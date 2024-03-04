@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example #2 - event handling</title>
+  </head>
+  <body>
+    <div id="app">
+      <input name="content" />
+      <button class="button">Click here</button>
+      <ul class="list"></ul>
+      <p>0</p>
+    </div>
+
+    <script type="text/javascript">
+const list = document.querySelector("#app .list");
+const addElement = () => {
+  const input = document.querySelector("input[name='content']");
+  const element = document.createElement("LI");
+  element.innerText = input.value.trim();
+  list.appendChild(element);
+  document.querySelector("#app p").innerText = list.children.length;
+};
+
+const button = document.querySelector(".button");
+button.addEventListener("click", addElement);
+
+    </script>
+  </body>
+</html>
