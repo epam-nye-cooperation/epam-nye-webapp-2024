@@ -14,6 +14,14 @@ Legalább Node.JS 18
 $ yarn install
 ```
 
+Telepítés után hozz létre egy `.env` file-t a package.json mellé. Ez tartalmazza a konfigurációt. Tartalma:
+```bash
+API_PORT=5000
+# sample value - override is highly suggested
+JWT_TOKEN_SECRET=This1s@secr3tKey
+```
+A JWT_TOKEN_SECRET értéke szabadon változtatható, belépésnél van hatása. Az API_PORT a szerver indítási pontját befolyásolja.
+
 ## Az alkalmazás futtatása
 
 ```bash
