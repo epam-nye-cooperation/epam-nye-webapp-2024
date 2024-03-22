@@ -4,6 +4,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   HttpStatus,
   NotFoundException,
   Param,
@@ -17,11 +18,14 @@ import {
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiBody,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { MovieSearchQuery } from './search/search-query.dto';
@@ -36,40 +40,40 @@ export class MoviesController {
 
   @ApiOperation({
     operationId: 'getMovies',
-    description: 'Search within available movies',
+    summary: 'Keresés',
+    description: 'Keresés a filmek között típus, leírás és cím alapján, eredmények rendezése és lapozás',
   })
   @Get()
   @ApiOkResponse({
     type: SearchMovieResponse,
   })
-  @ApiNotFoundResponse({
-    type: SearchMovieResponse,
-    description: 'No movies found with the specied parameters',
+  @ApiBadRequestResponse({
+    description: 'Hibás keresési paraméterek'
   })
   public getMovies(@Query() searchQuery: MovieSearchQuery) {
-    const result = this.movies.searchMovies(searchQuery);
-    if (!result.total) {
-      throw new NotFoundException(result);
-    }
-    return result;
+    return this.movies.searchMovies(searchQuery);
   }
 
   @ApiOperation({
     operationId: 'getMovieById',
-    description: 'Returns a movie by id',
+    summary: 'Film elérése',
+    description: 'Visszaadja az adott azonosítóval rendelkező filmet',
   })
   @Get('/:movieId')
   @ApiOkResponse({
     type: Movie,
   })
+  @ApiBadRequestResponse({
+    description: 'Hibás azonosító'
+  })
   @ApiNotFoundResponse({
     type: null,
-    description: 'The selected movie is not found',
+    description: 'A keresett film nem található',
   })
   @ApiParam({
     name: 'movieId',
     type: Number,
-    description: 'movieId to be found',
+    description: 'A keresett film azonosítója',
   })
   public getMovieById(
     @Param(
@@ -80,19 +84,20 @@ export class MoviesController {
   ) {
     const movie = this.movies.getMovie(movieId);
     if (!movie) {
-      throw new NotFoundException('movie not found');
+      throw new NotFoundException('A film nem található');
     }
     return movie;
   }
 
   @ApiOperation({
     operationId: 'addMovie',
-    description: 'Adds a new movie to the list',
+    summary: 'Új film hozzáadása',
+    description: 'Új film rögzítése a listában',
   })
-  @ApiOkResponse({ type: Movie })
+  @ApiCreatedResponse({ type: Movie, description: 'A film sikeresen rögzítve' })
   @ApiBody({ type: RawMovie })
   @ApiBadRequestResponse({
-    description: 'Invalid movie data is entered',
+    description: 'Érvénytelen adatok',
   })
   @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
@@ -103,9 +108,17 @@ export class MoviesController {
 
   @ApiOperation({
     operationId: 'updateMovie',
-    description: 'Updates an existing movie',
+    summary: 'Filmadat módosítása',
+    description: 'Film adatainak módosítása',
   })
   @ApiOkResponse({ type: Movie })
+  @ApiNotFoundResponse({
+    description: 'A film nem található'
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Csak belépett felhasználók részére elérhető'
+  })
+  @ApiBadRequestResponse({ description: 'Hibás film adatok' })
   @ApiBody({ type: Movie })
   @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
@@ -113,8 +126,8 @@ export class MoviesController {
   public updateMovie(@Body() movie: Movie) {
     const result = this.movies.updateMovie(movie);
     if (!result) {
-      throw new BadRequestException(
-        `The selected movie with id "${movie.id}" does not exists`
+      throw new NotFoundException(
+        `Nem található film ezzel az azonosítóval: "${movie.id}"`
       );
     }
     return result;
@@ -122,13 +135,20 @@ export class MoviesController {
 
   @ApiOperation({
     operationId: 'deleteMovie',
-    description: 'Removes a movie from database',
+    summary: 'Film törlése',
+    description: 'Film eltávolítása az adatbázisból',
   })
   @ApiParam({
     name: 'movieId',
     type: Number,
-    description: 'movieId to be removed',
+    description: 'A film azonosítója',
+    example: '933131',
   })
+  @ApiNotFoundResponse({
+    description: 'A film nem található'
+  })
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse({ description: 'Sikeresen törölve' })
   @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
   @Delete('/:movieId')
@@ -140,7 +160,7 @@ export class MoviesController {
     movieId: Movie['id']
   ) {
     if (!this.movies.removeMovie(movieId)) {
-      throw new NotFoundException('movie not found');
+      throw new NotFoundException('A keresett film nem található');
     }
   }
 }

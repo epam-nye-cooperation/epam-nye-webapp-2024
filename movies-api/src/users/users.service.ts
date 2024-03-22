@@ -34,7 +34,7 @@ export class UsersService implements OnModuleInit {
       });
     } catch (error) {
       this.logger.error(error);
-      throw new InternalServerErrorException('Cannot find users!');
+      throw new InternalServerErrorException('Configuration issue - cannot find users!');
     }
   }
 
@@ -48,7 +48,7 @@ export class UsersService implements OnModuleInit {
 
   public async register(userData: RegisterUserRequestBody) {
     if (this.findOne(userData.username)) {
-      throw new ConflictException('Already exists');
+      throw new ConflictException('Ez a felhasználónév már foglalt');
     }
     const user: User = {
       userId: uuid(),

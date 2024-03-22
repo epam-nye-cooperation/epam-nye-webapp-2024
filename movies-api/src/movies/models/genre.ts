@@ -13,7 +13,7 @@ export type Genre =
   | 'Music'
   | 'Mystery'
   | 'Romance'
-  | 'Science Fiction'
+  | 'SciFi'
   | 'TV Movie'
   | 'Thriller'
   | 'War'
@@ -56,7 +56,7 @@ export const GENRES: Genre[] = [
   'Music',
   'Mystery',
   'Romance',
-  'Science Fiction',
+  'SciFi',
   'TV Movie',
   'Thriller',
   'War',

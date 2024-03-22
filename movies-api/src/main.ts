@@ -20,7 +20,8 @@ async function bootstrap() {
   );
   const config: ConfigService<Configuration> = app.get(ConfigService);
 
-  app.useLogger(app.get(Logger));
+  const logger = app.get(Logger);
+  app.useLogger(logger);
   app.useGlobalInterceptors(new LoggerErrorInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
@@ -37,7 +38,7 @@ async function bootstrap() {
   });
 
   process.on('uncaughtException', (error, source) => {
-    PinoLogger.root.error({ message: 'Uncaught exception', error, source });
+    logger.error({ message: 'Uncaught exception', error, source });
   });
 
   await setupSwagger(app, 'api-doc');
@@ -47,13 +48,13 @@ async function bootstrap() {
     config.get('API_HOST'),
     (error, address) => {
       if (error) {
-        PinoLogger.root.error(error);
+        logger.error(error);
         return;
       }
-      PinoLogger.root.info(
+      logger.debug(
         `Application started in ${process.env.NODE_ENV} environment`
       );
-      PinoLogger.root.info(`Service layer is listening on ${address}`);
+      logger.debug(`Service layer is listening on ${address}`);
     }
   );
 }

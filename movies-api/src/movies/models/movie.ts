@@ -1,8 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { GenreValues } from './genre';
+import { GENRES, GenreValues } from './genre';
 import {
   IsArray,
   IsDateString,
+  IsEnum,
   IsIn,
   IsInt,
   IsNotEmpty,
@@ -20,8 +21,8 @@ export interface MovieBase {
   tagline?: string;
   vote_avarage?: number;
   vote_count?: number;
-  release_date?: string;
-  poster_path: string;
+  release_date: string;
+  poster_path?: string | null;
   overview: string;
   budget?: number;
   genres: GenreValues[];
@@ -31,7 +32,8 @@ export interface MovieBase {
 export class RawMovie implements MovieBase {
   @ApiProperty({
     type: String,
-    required: true,
+    description: 'Film címe',
+    example: 'Deadpool & Wolverine'
   })
   @IsString()
   @IsNotEmpty()
@@ -39,93 +41,95 @@ export class RawMovie implements MovieBase {
   title: string;
 
   @ApiPropertyOptional({
-    required: false,
+    description: 'Alcím',
+    example: 'Come together.'
   })
   @IsOptional()
   @IsString()
-  tagLine?: string;
+  tagline?: string;
 
   @ApiPropertyOptional({
-    required: false,
     minimum: 0,
-    maximum: 100,
+    maximum: 10,
     default: 0,
+    description: 'Átlagos értékelés'
   })
   @IsOptional()
   @IsNumber()
-  @Min(0)
-  @Max(100)
+  @Min(0, { message: 'Az átlag értékelés nem lehet negatív' })
+  @Max(10, { message: 'Az átlag értékelés nem lehet több, mint 10' })
   vote_average: number = 0;
 
   @ApiPropertyOptional({
-    required: false,
     minimum: 0,
-    maximum: 100,
     default: 0,
+    description: 'Szavazatok száma',
   })
   @IsOptional()
   @IsNumber()
-  @Min(0)
+  @Min(0, { message: 'A szavazatok száma nem lehet negatív' })
   vote_count: number = 0;
 
   @ApiProperty({
-    required: true,
     format: 'date',
+    description: 'Megjelenés ideje (ÉÉÉÉ-HH-NN)',
+    example: '2024-07-26',
   })
-  @IsDateString()
+  @IsDateString({}, { message: 'Hibás dátumformátum' })
   release_date: string = '';
 
   @ApiPropertyOptional({
-    required: false,
     format: 'url',
+    description: 'Poszter',
+    example: null,
   })
   @IsOptional()
   @IsString()
-  @IsUrl()
-  poster_path: string;
+  @IsUrl({}, { message: 'Hibás URL cím' })
+  poster_path?: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Leírás',
+    example: 'Third entry in the "Deadpool" franchise. Plot TBA.'
+  })
   @IsString()
+  @IsNotEmpty({ message: 'Kérjük adjon meg leírást' })
   overview: string;
 
   @ApiPropertyOptional({
-    required: false,
     minimum: 0,
+    description: 'Büdzsé (USD)'
   })
   @IsOptional()
   @IsNumber()
-  @Min(0)
+  @Min(0, { message: 'A büdzsé nem lehet negatív' })
   budget?: number;
 
   @ApiPropertyOptional({
-    required: false,
     minimum: 0,
+    description: 'Bevétel (USD)'
   })
   @IsOptional()
   @IsNumber()
-  @Min(0)
+  @Min(0, { message: 'A bevétel nem lehet negatív' })
   revenue?: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    enum: [Object.values(GenreValues)],
+    description: 'Film típus'
+  })
   @IsArray()
-  @IsIn(Object.values(GenreValues), { each: true })
+  @IsEnum(GenreValues, { each: true, message: ({ constraints }) => `A típus az alábbiak közül választható: ${constraints[1]}` })
   genres: GenreValues[] = [];
 
   @ApiProperty({
     minimum: 0,
     default: 0,
+    description: 'A film hossza (perc)'
   })
   @IsInt()
-  @Min(0)
+  @Min(0, { message: 'A film hossza nem lehet negatív' })
   runtime: number = 0;
-
-  @ApiPropertyOptional({
-    required: false,
-    default: '',
-  })
-  @IsString()
-  @IsOptional()
-  tagline: string = '';
 }
 
 export class Movie extends RawMovie {

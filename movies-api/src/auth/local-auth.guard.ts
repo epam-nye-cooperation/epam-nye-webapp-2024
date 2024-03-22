@@ -17,7 +17,12 @@ export class LocalAuthGuard extends AuthGuard('local') {
       await validateLoginRequest(username, password);
     } catch (error) {
       throw new BadRequestException({
-        message: (error as ValidationError[]).map((error) => error.constraints),
+        message: (error as ValidationError[]).reduce((errors, error) => {
+          return [
+            ...errors,
+            ...Object.values(error.constraints),
+          ];
+        }, []),
       });
     }
     return super.canActivate(context) as Promise<boolean>;

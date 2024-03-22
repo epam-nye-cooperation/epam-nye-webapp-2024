@@ -19,22 +19,25 @@ export interface User {
 
 export class LoginRequest {
   @Transform(({ value }) => (value ? `${value}`.trim().toLowerCase() : ''))
-  @ApiProperty({ name: 'username', type: String })
+  @ApiProperty({
+    type: String,
+    description: 'Felhasználónév',
+    example: 'admin@local.com',
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Adja meg a felhasználónevet' })
   @IsEmail(
     {},
     {
-      message: 'Invalid email address',
+      message: 'Hibás email cím',
     }
   )
   username: string;
 
   @ApiProperty({
-    name: 'password',
     type: String,
-    description:
-      'Password should be at least 8 char length and must contain at least 1 number and 1 lower case letter',
+    description: 'Jelszó',
+    example: 'admin123'
   })
   @IsString()
   @IsStrongPassword(
@@ -49,7 +52,7 @@ export class LoginRequest {
       message: ({
         constraints: [{ minLength, minLowercase, minNumbers }],
       }: ValidationArguments) =>
-        `Password should be at least ${minLength} chars length, must contain at least ${minNumbers} number and ${minLowercase} lower case letter`,
+        `A jelszónak legalább ${minLength} karakter hosszúnak kell lennie legalább ${minNumbers} számmal és ${minLowercase} kisbetűvel`,
     }
   )
   password: string;
@@ -59,21 +62,33 @@ export class RegisterUserRequestBody
   extends LoginRequest
   implements Omit<User, 'userId' | 'email'>
 {
+  @ApiProperty({
+    type: String,
+    description: 'Keresztnév',
+    required: true,
+    example: 'Root'
+  })
   @Transform(({ value }) => (typeof value === 'string' ? value.trim() : null))
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'A keresztnév megadása kötelező' })
   firstName: string;
 
+  @ApiProperty({
+    type: String,
+    description: 'Vezetéknév',
+    required: true,
+    example: 'Kiskacsa'
+  })
   @Transform(({ value }) => (typeof value === 'string' ? value.trim() : null))
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'A vezetéknév megadása kötelező' })
   lastName: string;
 }
 
 export const validateLoginRequest = async (
   username: string,
   password: string
-) => {
+): Promise<void> => {
   const login = new LoginRequest();
   login.username = username;
   login.password = password;
