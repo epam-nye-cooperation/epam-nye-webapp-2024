@@ -1,0 +1,15 @@
+.container {
+  text-align: center;
+}
+
+.counters {
+  font-size: 28px;
+  color: #ff0000;
+}
+
+.buttons {
+  background-color: black;
+  color: white;
+  padding: 16px 8px 8px 12px;
+  margin-right: 12px;
+}
