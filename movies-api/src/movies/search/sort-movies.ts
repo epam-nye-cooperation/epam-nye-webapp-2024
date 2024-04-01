@@ -1,11 +1,15 @@
 import { Movie } from '../models';
-import { MovieSearchQuery, MovieSortBy } from './search-query.dto';
+import { MovieSearchQuery } from './search-query.dto';
 
 export const sortMovies = (
   movies: Movie[],
-  { sortBy, sortOrder }: MovieSearchQuery
+  { orderBy }: MovieSearchQuery
 ) => {
-  const result = [...movies];
+  const result = [...movies]; 
+  if (!orderBy) {
+    return result;
+  }
+  const [sortBy, sortOrder] = orderBy.split('.');
   if (!sortBy || !sortOrder) {
     return result;
   }
@@ -13,14 +17,14 @@ export const sortMovies = (
     let aField = a[sortBy];
     let bField = b[sortBy];
 
-    if (sortOrder === 'desc') {
+    if (sortOrder === 'DESC') {
       const tmp = aField;
       aField = bField;
       bField = tmp;
     }
 
     if (typeof aField === 'string') {
-      if (sortBy === MovieSortBy.release_date) {
+      if (sortBy === 'release_date') {
         return new Date(aField).getTime() - new Date(bField).getTime();
       }
       return aField.localeCompare(bField as string);

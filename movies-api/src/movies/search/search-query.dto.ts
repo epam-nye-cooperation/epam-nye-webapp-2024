@@ -10,17 +10,13 @@ import {
 } from 'class-validator';
 import { Genre, GENRES } from '../models';
 
-export enum MovieSortBy {
-  'title' = 'title',
-  'vote_avarage' = 'vote_average',
-  'release_date' = 'release_date',
-  'budget' = 'budget',
-  'runtime' = 'runtime',
-}
-
-export enum MovieSortOrder {
-  ASC = 'asc',
-  DESC = 'desc',
+export enum MovieOrderBy {
+  TITLE_ASC = 'title.ASC',
+  TITLE_DESC = 'title.DESC',
+  VOTE_ASC = 'vote_average.ASC',
+  VOTE_DESC = 'vote_average.DESC',
+  RELEASE_DATE_ASC = 'release_date.ASC',
+  RELEASE_DATE_DESC = 'release_date.DESC',
 }
 
 export class MovieSearchQuery {
@@ -53,20 +49,11 @@ export class MovieSearchQuery {
   @ApiProperty({
     required: false,
     description: 'Eredmények rendezése cím, megjelenés ideje, átlagos értékelés, keretösszeg vagy időtartam szerint',
-    enum: MovieSortBy,
+    enum: MovieOrderBy,
   })
   @IsOptional()
-  @IsEnum(MovieSortBy, { message: ({ constraints }) => `Rendezéshez válasszon az alábbi értékek közül: ${constraints.join(', ')}` })
-  sortBy?: MovieSortBy;
-
-  @ApiProperty({
-    required: false,
-    description: 'Növekvő vagy csökkenő sorrend',
-    enum: MovieSortOrder,
-  })
-  @IsOptional()
-  @IsEnum(MovieSortOrder, { message: ({ constraints }) => `Rendezés irányához válasszon az alábbi értékek közül: ${constraints.join(', ')}` })
-  sortOrder?: MovieSortOrder;
+  @IsEnum(MovieOrderBy, { message: ({ constraints }) => `Rendezéshez válasszon az alábbi értékek közül: ${constraints.join(', ')}` })
+  orderBy?: MovieOrderBy;
 
   @ApiProperty({
     required: false,
