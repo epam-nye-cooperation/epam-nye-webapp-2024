@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Container, Heading } from '@chakra-ui/react';
 import { Movie, MovieSortType, RawMovie } from '../../models';
 import { MovieList } from './movie-list';
-import { SearchBox } from '../search/search-box';
+import { SearchBox } from '../search';
 import { SortMovies } from './sort-movies';
 
 const BASE_URL = 'http://localhost:5000';
@@ -15,7 +15,7 @@ export const MovieListPage = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
-      const queryParams = new URLSearchParams({ search });
+      const queryParams = new URLSearchParams({ search, orderBy });
       const response = await fetch(`${BASE_URL}/movies?${queryParams}`);
       const { data, total } = await response.json();
       setMovies(data.map((movie: RawMovie) => ({
@@ -25,7 +25,7 @@ export const MovieListPage = () => {
       setTotal(total);
     };
     loadMovies();
-  }, [search, setMovies, setTotal]);
+  }, [search, orderBy, setMovies, setTotal]);
 
   return (
     <Box width="full" backgroundColor="background.dark">
