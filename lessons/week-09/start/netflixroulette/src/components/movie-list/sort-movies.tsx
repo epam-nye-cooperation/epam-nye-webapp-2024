@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC } from 'react';
 import { Flex, Menu, MenuButton, MenuItem, MenuList, Text, useDisclosure } from '@chakra-ui/react';
 import { MovieSortType, SORT } from '../../models';
 import { UpDownIcon } from '@chakra-ui/icons';

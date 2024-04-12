@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { ChakraProvider, Container } from '@chakra-ui/react'
 import { theme } from './theme';
-import { MovieListPage, NetflixRouletteLogo } from './components';
+import { MovieListPage, MoviePage, NetflixRouletteLogo } from './components';
 import { Route, Routes } from 'react-router-dom';
-import { MoviePage } from './components/movie-page/movie-page';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
