@@ -1,0 +1,126 @@
+[
+  {
+    "houseId": "gryffindor",
+    "name": "Gryffindor",
+    "houseColors": "Scarlet and gold",
+    "founder": "Godric Gryffindor",
+    "animal": "Lion",
+    "element": "Fire",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b1/Gryffindor_ClearBG.png/revision/latest?cb=20190222162949",
+    "ghost": "Nearly-Headless Nick",
+    "commonRoom": "Gryffindor Tower",
+    "heads": [
+      {
+        "firstName": "Minerva",
+        "lastName": "McGonagall"
+      },
+      {
+        "firstName": "Godric",
+        "lastName": "Gryffindor"
+      }
+    ],
+    "traits": [
+      "Courage",
+      "Chivalary",
+      "Nerve",
+      "Daring",
+      "Determination",
+      "Bravery"
+    ],
+    "points": 0
+  },
+  {
+    "houseId": "ravenclaw",
+    "name": "Ravenclaw",
+    "houseColors": "Blue and bronze",
+    "founder": "Rowena Ravenclaw",
+    "animal": "Eagle",
+    "element": "Air",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/7/71/Ravenclaw_ClearBG.png/revision/latest?cb=20161020182442",
+    "ghost": "Grey Lady",
+    "commonRoom": "Ravenclaw Tower",
+    "heads": [
+      {
+        "firstName": "Filius",
+        "lastName": "Flitwick"
+      },
+      {
+        "firstName": "Rowena",
+        "lastName": "Ravenclaw"
+      }
+    ],
+    "traits": [
+      "Learning",
+      "Acceptance",
+      "Inteligence",
+      "Wisdom",
+      "Wit",
+      "Creativity"
+    ],
+    "points": 0
+  },
+  {
+    "houseId": "hufflepuff",
+    "name": "Hufflepuff",
+    "houseColors": "Yellow and black",
+    "founder": "Helga Hufflepuff",
+    "animal": "Badger",
+    "element": "Earth",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_ClearBG.png/revision/latest?cb=20161020182518",
+    "ghost": "Fat Friar",
+    "commonRoom": "Hufflepuff Basement",
+    "heads": [
+      {
+        "firstName": "Helga",
+        "lastName": "Hufflepuff"
+      },
+      {
+        "firstName": "Pomona",
+        "lastName": "Sprout"
+      }
+    ],
+    "traits": [
+      "Hardworking",
+      "Patience",
+      "Loyalty",
+      "Just",
+      "Fairness",
+      "Modesty"
+    ],
+    "points": 0
+  },
+  {
+    "houseId": "slytherin",
+    "name": "Slytherin",
+    "houseColors": "Green and silver",
+    "founder": "Salazar Slytherin",
+    "animal": "Serpent",
+    "element": "Water",
+    "image": "https://static.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_ClearBG.png/revision/latest?cb=20161020182557",
+    "ghost": "Bloody Baron",
+    "commonRoom": "Slytherin Dungeon",
+    "heads": [
+      {
+        "firstName": "Horace",
+        "lastName": "Slughorn"
+      },
+      {
+        "firstName": "Salazar",
+        "lastName": "Slytherin"
+      },
+      {
+        "firstName": "Severus",
+        "lastName": "Snape"
+      }
+    ],
+    "traits": [
+      "Resourcefulness",
+      "Selfpreservation",
+      "Ambition",
+      "Cunning",
+      "Pride",
+      "Determination"
+    ],
+    "points": 0
+  }
+]

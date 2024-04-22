@@ -1,0 +1,24 @@
+[
+  {
+    "userId": "5c837fa6-3bf6-4e74-ab3a-80b996081d64",
+    "email": "albus.dumbledore@hogwarts.co.uk",
+    "firstName": "Albus Percival Wulfric Brian",
+    "lastName": "Dumbledore",
+    "password": "$2b$10$fL.aYZ0UDpcpK73ymg2ahOmr0aSli.h6EPXvmd8oX.JUyS/62s8Gi",
+    "homeAddress": {
+      "name": "Albus Percival Wulfric Brian Dumbledore",
+      "country": "United Kingdom",
+      "city": "Mould-on-the-Wold",
+      "street": "Hollow route 66",
+      "zip": "GVJG+7M"
+    },
+    "notificationAddress": {
+      "name": "Headmaster of Hogwarts School of Witchcraft and Wizardry",
+      "country": "United Kingdom",
+      "city": "Scottish Highlands",
+      "street": "Hogwarts Castle",
+      "zip": "8GJX+C8"
+    },
+    "house": "gryffindor"
+  }
+]

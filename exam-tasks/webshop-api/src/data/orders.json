@@ -1,0 +1,31 @@
+[
+  {
+    "status": "new",
+    "orderId": "97913e7c-c5fd-47f3-aed9-bcb306c8e7a7",
+    "comment": "A csengő nem működik",
+    "billingAddress": {
+      "name": "President of U.S.A.",
+      "country": "United States of America",
+      "city": "Washington D.C.",
+      "street": "1600 Pennsylvania Avenue NW",
+      "zip": "20500 U.S."
+    },
+    "shippingAddress": {
+      "name": "President of U.S.A.",
+      "country": "United States of America",
+      "city": "Washington D.C.",
+      "street": "1600 Pennsylvania Avenue NW",
+      "zip": "20500 U.S.",
+      "phoneNumber": "+36201234567"
+    },
+    "items": [
+      {
+        "productId": "447dd9cd-3f35-4a40-a6c5-0097bf50643c",
+        "quantity": 5
+      }
+    ],
+    "createdAt": "2024-04-07T21:33:36.618Z",
+    "updatedAt": "2024-04-07T21:33:36.618Z",
+    "userId": "5c837fa6-3bf6-4e74-ab3a-80b996081d64"
+  }
+]

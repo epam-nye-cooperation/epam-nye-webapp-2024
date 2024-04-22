@@ -1,0 +1,356 @@
+[
+  {
+    "id": "86e7311b-1d81-41dc-8773-6fa43fd14678",
+    "name": "Occaecat amet",
+    "description": "Dolor sunt officia enim irure dolore adipisicing laboris id sint sint magna sunt eiusmod dolor. Eiusmod ex veniam culpa esse proident eu. Do aute quis ipsum aliqua ut. Adipisicing aliquip non nostrud reprehenderit ut in aliqua culpa.\r\n",
+    "price": 488.43,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "Video Games & Consoles"
+    ],
+    "stock": 10
+  },
+  {
+    "id": "45a4fe6d-6ec9-4deb-9999-964f89368106",
+    "name": "Fugiat dolore quis excepteur",
+    "description": "Nostrud et nisi ex consequat Lorem. Ullamco sunt culpa fugiat eu qui fugiat esse Lorem nulla mollit nisi excepteur labore laborum. Labore mollit amet ea mollit sint nulla quis elit laborum aliquip irure. Deserunt dolor pariatur elit aliqua voluptate veniam. Nulla nostrud ea exercitation ea labore. Voluptate aliquip tempor occaecat est do anim irure elit irure ex laborum occaecat.\r\n",
+    "price": 402.07,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
+    },
+    "categories": [
+      "Cellphones & Accessories"
+    ],
+    "stock": 6
+  },
+  {
+    "id": "a45121f3-e688-44e3-ac52-2a55aeb63412",
+    "name": "Sint qui mollit voluptate",
+    "description": "Enim aute commodo aute reprehenderit fugiat fugiat voluptate magna reprehenderit non pariatur esse incididunt. Excepteur pariatur ut consectetur fugiat nulla aliqua elit ut. Reprehenderit dolor nostrud ipsum mollit qui excepteur do cupidatat incididunt ad tempor sint elit fugiat. Duis nulla elit proident enim mollit sint ullamco duis laborum Lorem. Lorem anim cupidatat ea ullamco duis aliquip ad exercitation eiusmod et ullamco consectetur elit enim.\r\n",
+    "price": 803.35,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "TV, Audio & Surveillance",
+      "Video Games & Consoles"
+    ],
+    "stock": 9
+  },
+  {
+    "id": "440a8667-868d-47d1-8fb7-5324a0f5133e",
+    "name": "Est labore exercitation",
+    "description": "Ut sunt adipisicing culpa magna elit velit aute. Irure commodo sunt tempor officia commodo elit enim nulla elit aliqua esse incididunt occaecat. Aute Lorem cupidatat et pariatur commodo consequat ipsum do esse eiusmod duis voluptate.\r\n",
+    "price": 2475.35,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
+    },
+    "categories": [
+      "Video Games & Consoles",
+      "TV, Audio & Surveillance"
+    ],
+    "stock": 2
+  },
+  {
+    "id": "9f7cb6dc-e14f-4278-9724-33a3ad1f45a5",
+    "name": "Commodo nostrud aliquip",
+    "description": "Eu excepteur id exercitation sint labore sint commodo veniam minim. Ullamco officia proident velit culpa nisi cillum laborum mollit. Tempor veniam officia deserunt eiusmod exercitation labore dolor in aliquip voluptate aliquip anim nulla. Esse voluptate sit officia sint ipsum deserunt elit fugiat voluptate exercitation enim culpa.\r\n",
+    "price": 1464.97,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
+    },
+    "categories": [
+      "Video Games & Consoles",
+      "Vehicle Electronics & GPS"
+    ],
+    "stock": 2
+  },
+  {
+    "id": "4b521711-8620-43c3-ae5c-d8ab7a35840c",
+    "name": "In dolore",
+    "description": "Dolor reprehenderit quis ipsum ex ut velit. Do amet fugiat occaecat magna. Aliqua culpa anim occaecat ad aliqua eu voluptate ex deserunt et cupidatat consequat. Duis voluptate ut do consequat ut ullamco voluptate culpa fugiat et aliqua et in ex. Sunt cupidatat aliquip labore ad ad commodo ullamco magna incididunt anim commodo adipisicing consectetur do. Officia ut minim nulla ullamco.\r\n",
+    "price": 323.46,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 4
+    },
+    "categories": [
+      "Cellphones & Accessories"
+    ],
+    "stock": 7
+  },
+  {
+    "id": "f2e63e44-c778-4bf6-88bd-2b787b3ae94b",
+    "name": "Sit dolor",
+    "description": "Ad ad veniam dolor eiusmod do pariatur deserunt. Eu nulla pariatur est non id occaecat excepteur ut adipisicing nulla esse eu laborum laboris. Laborum exercitation ea aute occaecat. Dolore aute eiusmod proident qui fugiat nulla exercitation deserunt magna.\r\n",
+    "price": 319.74,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
+    },
+    "categories": [
+      "Cellphones & Accessories"
+    ],
+    "stock": 5
+  },
+  {
+    "id": "a87ea218-46e1-4f37-8fe6-819d2050fdf2",
+    "name": "Amet adipisicing dolore incididunt",
+    "description": "Anim cupidatat sunt id mollit magna eiusmod aute ad non irure anim cillum. Dolore velit tempor excepteur ex est qui voluptate occaecat aute est exercitation. Nisi officia minim dolor ea ad et qui tempor aliqua ipsum. Ad do quis cillum sit. Culpa deserunt nulla qui exercitation sunt mollit occaecat reprehenderit anim minim et enim minim eiusmod.\r\n",
+    "price": 513.73,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "Cellphones & Accessories",
+      "Video Games & Consoles",
+      "TV, Audio & Surveillance"
+    ],
+    "stock": 6
+  },
+  {
+    "id": "057913ba-8757-45c4-bc76-bdecf9a5830f",
+    "name": "Sit sit ut ipsum ex",
+    "description": "Fugiat reprehenderit eu quis dolore reprehenderit aute ipsum qui laborum ea. Irure dolor tempor dolor mollit. Laboris Lorem consectetur adipisicing id eiusmod aute irure enim do ullamco pariatur. Magna esse adipisicing proident sint enim enim deserunt ut occaecat consectetur exercitation aute exercitation. Cupidatat pariatur ad mollit cupidatat veniam labore culpa nostrud nostrud ea. Pariatur pariatur non ex duis. Est anim qui irure ipsum reprehenderit fugiat.\r\n",
+    "price": 947.19,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
+    },
+    "categories": [
+      "Vehicle Electronics & GPS"
+    ],
+    "stock": 2
+  },
+  {
+    "id": "ba411d8e-8de0-4cbc-ab7c-f810ab8d796f",
+    "name": "Aliquip id occaecat adipisicing ullamco",
+    "description": "Elit laboris est qui reprehenderit enim nisi veniam. Incididunt ea pariatur nulla cupidatat ullamco. Dolore esse veniam non amet reprehenderit occaecat.\r\n",
+    "price": 601.38,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 4
+    },
+    "categories": [
+      "Video Games & Consoles",
+      "TV, Audio & Surveillance"
+    ],
+    "stock": 5
+  },
+  {
+    "id": "d2f2dff5-9599-4c48-8c08-621766b58a7a",
+    "name": "Fugiat magna",
+    "description": "Quis ullamco veniam aliquip enim eiusmod irure tempor culpa ullamco aliquip velit. Occaecat adipisicing voluptate excepteur Lorem labore dolor consectetur ea laborum amet. Ullamco quis non incididunt ad eiusmod quis do duis laboris irure qui ea. Excepteur laborum ea sunt officia pariatur. Consequat labore eu sunt ea ad do aute dolor deserunt reprehenderit. Mollit veniam qui elit officia exercitation dolor cupidatat occaecat eiusmod minim veniam incididunt culpa. In exercitation ut reprehenderit aliquip nostrud cupidatat laborum eiusmod quis laborum et pariatur fugiat minim.\r\n",
+    "price": 1884.77,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 5
+    },
+    "categories": [
+      "Vehicle Electronics & GPS",
+      "Cameras & Photo"
+    ],
+    "stock": 4
+  },
+  {
+    "id": "5f421941-05c4-49f4-8440-c4655c955dfe",
+    "name": "Consectetur mollit laborum",
+    "description": "Non veniam aute nulla exercitation commodo proident irure dolore occaecat irure proident. Aliquip laboris excepteur id Lorem ut fugiat sint ad velit labore quis. Officia minim duis est amet reprehenderit dolor in. Voluptate commodo exercitation deserunt in qui nulla laborum ipsum.\r\n",
+    "price": 2206.05,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "TV, Audio & Surveillance"
+    ],
+    "stock": 6
+  },
+  {
+    "id": "9f20b45c-6e33-4fb9-8bea-37a3c63e7af7",
+    "name": "Laboris dolore",
+    "description": "Excepteur pariatur excepteur adipisicing ad ex consectetur cillum. Adipisicing anim aliquip labore sint cillum elit esse voluptate. Lorem ea elit ipsum elit id cillum dolor nisi. Elit exercitation exercitation fugiat esse velit elit cupidatat duis sit reprehenderit id. Aliqua duis pariatur officia ex ex ex ea occaecat veniam. Duis excepteur amet ut aute ex eu dolore ipsum officia.\r\n",
+    "price": 1771.56,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "Cellphones & Accessories",
+      "Computers & Tablets",
+      "Vehicle Electronics & GPS"
+    ],
+    "stock": 9
+  },
+  {
+    "id": "d06ed410-8e19-4558-a85d-a35ccfd33fa9",
+    "name": "Sit incididunt",
+    "description": "Ipsum cupidatat nostrud adipisicing non ex. Adipisicing elit qui reprehenderit eiusmod esse tempor quis laboris pariatur adipisicing qui commodo. Commodo cillum ipsum consectetur enim dolore ea reprehenderit irure eu duis aute quis exercitation.\r\n",
+    "price": 732.36,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
+    },
+    "categories": [
+      "Computers & Tablets"
+    ],
+    "stock": 0
+  },
+  {
+    "id": "447dd9cd-3f35-4a40-a6c5-0097bf50643c",
+    "name": "Aute nisi amet",
+    "description": "Magna excepteur tempor culpa occaecat sunt duis occaecat ea reprehenderit do pariatur magna qui. Esse sunt deserunt minim reprehenderit irure dolor enim velit elit dolor cillum proident anim deserunt. Ut Lorem dolore aliquip proident nostrud ea sint adipisicing. Amet amet deserunt culpa sint magna qui eiusmod laboris amet dolor labore.\r\n",
+    "price": 1719.8,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
+    },
+    "categories": [
+      "Computers & Tablets",
+      "Cameras & Photo",
+      "TV, Audio & Surveillance"
+    ],
+    "stock": 6
+  },
+  {
+    "id": "7c9bf33d-40a6-4d56-a48c-6083fad15cd3",
+    "name": "Sint laborum nostrud",
+    "description": "Aliqua eiusmod occaecat dolor consectetur. Eu magna dolore ut pariatur ea pariatur. Ullamco laboris pariatur qui Lorem anim elit minim sunt nulla duis ut qui amet. Ut ex reprehenderit ea pariatur voluptate nulla esse. Sint sit velit fugiat ad in. Irure culpa dolore cupidatat magna velit aute laboris ad voluptate esse.\r\n",
+    "price": 122.29,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 5
+    },
+    "categories": [
+      "Vehicle Electronics & GPS",
+      "Cameras & Photo"
+    ],
+    "stock": 9
+  },
+  {
+    "id": "bd0b11cc-cd6b-4220-afbd-c0f7a80af07c",
+    "name": "Voluptate aliqua",
+    "description": "Lorem laboris sit quis non qui labore aliqua fugiat. Fugiat ut sint irure dolore ex adipisicing nisi dolore veniam ex consectetur. Eu veniam officia dolor sunt do sint nisi.\r\n",
+    "price": 1712.74,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "Vehicle Electronics & GPS",
+      "TV, Audio & Surveillance",
+      "Computers & Tablets"
+    ],
+    "stock": 1
+  },
+  {
+    "id": "b1e1b548-90f3-4da9-b843-672759543c6f",
+    "name": "Eu reprehenderit nulla ad quis",
+    "description": "Et do labore irure anim ullamco deserunt aliquip dolor nulla ut aute nulla ut pariatur. Ea magna elit ipsum aliqua tempor do esse in nisi sit in sit est. Aliqua mollit dolore occaecat cillum quis cupidatat excepteur officia aliquip ea.\r\n",
+    "price": 1882.63,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "Computers & Tablets",
+      "Cameras & Photo"
+    ],
+    "stock": 5
+  },
+  {
+    "id": "1e2f3b8c-1750-44f8-b349-68c5d63f62ff",
+    "name": "Esse sunt est proident",
+    "description": "Do ex aute occaecat mollit quis dolore eiusmod reprehenderit consequat dolor dolore amet. Ullamco aliqua veniam et incididunt minim ullamco sunt commodo occaecat. Exercitation anim laboris duis adipisicing laborum irure culpa. Elit duis laboris aliquip aliqua ullamco do cillum ullamco dolor deserunt mollit anim ea cupidatat. Fugiat eiusmod commodo et esse ad commodo ut sit duis dolor. In in dolore reprehenderit laboris adipisicing ea deserunt adipisicing nostrud sunt.\r\n",
+    "price": 2317.41,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
+    },
+    "categories": [
+      "Vehicle Electronics & GPS",
+      "Cellphones & Accessories",
+      "Cameras & Photo"
+    ],
+    "stock": 1
+  },
+  {
+    "id": "0f602f36-76fc-4fb3-a5ed-fd9cb5c0cf09",
+    "name": "Et voluptate magna mollit anim",
+    "description": "Nulla dolore labore consequat sint irure anim. Et consectetur excepteur magna aute. Culpa deserunt ut sint excepteur adipisicing ut occaecat eiusmod irure enim. Esse exercitation eu in aliqua Lorem duis veniam labore proident sint. Do sunt id amet veniam commodo id.\r\n",
+    "price": 1901.94,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
+    },
+    "categories": [
+      "Vehicle Electronics & GPS",
+      "Video Games & Consoles"
+    ],
+    "stock": 9
+  },
+  {
+    "id": "d96b57ac-ca28-4466-8e06-6924fa680719",
+    "name": "Aliquip et pariatur",
+    "description": "Voluptate minim ut eu et ipsum esse magna non. Mollit enim officia proident sint aliqua. Elit deserunt aliquip et est consectetur. Anim consequat ullamco enim irure quis dolore velit. Id cillum eu elit Lorem fugiat. Ea veniam consequat laborum deserunt anim excepteur qui do deserunt.\r\n",
+    "price": 1435.04,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
+    },
+    "categories": [
+      "Cellphones & Accessories"
+    ],
+    "stock": 7
+  },
+  {
+    "id": "a7d8f2e0-b7f1-47c9-9c94-efa42025dc13",
+    "name": "Aliqua ad",
+    "description": "Dolor ad deserunt laboris voluptate. Pariatur voluptate anim voluptate et cillum amet dolore duis minim cupidatat adipisicing Lorem. Eiusmod nostrud voluptate exercitation esse esse aliquip nisi exercitation nostrud voluptate ex duis. Elit dolore aliquip esse id anim id consequat enim. Ipsum aute ut Lorem cupidatat voluptate elit. Voluptate laborum ut id Lorem.\r\n",
+    "price": 2114,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
+    },
+    "categories": [
+      "Cellphones & Accessories"
+    ],
+    "stock": 10
+  },
+  {
+    "id": "c7ac3c2b-3bb2-4480-96b8-c17db3f83d14",
+    "name": "Nostrud esse ad",
+    "description": "Minim sit proident deserunt do labore ullamco elit nulla officia tempor fugiat. Nulla Lorem minim proident occaecat reprehenderit adipisicing incididunt. Magna labore veniam voluptate incididunt ipsum et aliquip elit cupidatat quis. Eu ea nisi cillum excepteur laborum eiusmod magna.\r\n",
+    "price": 879.82,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 4
+    },
+    "categories": [
+      "Cellphones & Accessories"
+    ],
+    "stock": 5
+  },
+  {
+    "id": "b7154b41-0137-4a8f-ac3b-91eaf271a051",
+    "name": "Consectetur reprehenderit qui fugiat ex",
+    "description": "Fugiat sunt nisi elit cillum ad proident labore. Proident consectetur culpa incididunt nostrud. Sunt consequat cupidatat do ex cupidatat reprehenderit proident cillum non ipsum culpa. Enim voluptate proident in nisi pariatur. Magna enim exercitation cillum proident aliquip dolore sunt excepteur laborum sit duis voluptate. Elit nisi commodo officia do incididunt tempor officia aliqua id dolore.\r\n",
+    "price": 888.41,
+    "image": "https://picsum.photos/640/480.jpg",
+    "ratings": {
+      "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 5
+    },
+    "categories": [
+      "Computers & Tablets"
+    ],
+    "stock": 3
+  }
+]

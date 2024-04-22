@@ -26,7 +26,7 @@ A félév végi jegy megszerzéséhez az alábbi követelményeket kell a hallga
 Amennyiben a fent található két feltétel bármelyikének a hallgató nem tud eleget tenni, elégtelen jegyet kap. A vizsgára bocsájtás feltétele az időszaki feladatsor elkészítése, a fél év végi jegyet a vizsgán bemutatott alkalmazás elkészítésében vállalt mennyiségi és minőségi munkája fogja meghatározni. Az időszaki feladatsoron szerzett pontszám pozitív vagy negatív befolyással lehet erre.
 
 ## Vizsgafeladatok
-hamarosan...
+A vizsgafeladathoz tartozó követelmények megtekinthetőek az [exam-tasks](exam-tasks/README.md) mappában
 
 ## Elérhető anyagok
 
