@@ -1,4 +1,4 @@
-import { background, theme as chakraTheme, extendTheme } from '@chakra-ui/react';
+import { theme as chakraTheme, extendTheme } from '@chakra-ui/react';
 import '@fontsource/montserrat';
 import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';

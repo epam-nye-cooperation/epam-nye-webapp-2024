@@ -11,7 +11,6 @@ import {
 
 import { Movie } from '../../models';
 import { Rating } from './rating';
-//import { Rating } from "./rating";
 
 export interface MovieDescriptionProps {
   movie: Movie;

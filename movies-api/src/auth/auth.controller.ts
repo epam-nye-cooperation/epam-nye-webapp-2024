@@ -4,9 +4,10 @@ import {
   Get,
   Post,
   Request,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiBody, ApiConflictResponse, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { FastifyRequest } from 'fastify';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
@@ -14,6 +15,7 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 import {
   LoginRequest,
   RegisterUserRequestBody,
+  RegisterUserResponse,
   User,
 } from '../users/user.type';
 import { UsersService } from 'src/users/users.service';
@@ -32,11 +34,17 @@ export class AuthController {
     summary: 'Profiladatok',
     description: 'Felhasználó adatainak lekérdezése'
   })
+  @ApiOkResponse({ type: RegisterUserResponse, description: 'Felhasználó profilja' })
   @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
   @Get()
-  public async getProfile(@Request() req: AuthRequest) {
-    return req.user;
+  public getProfile(@Request() req: AuthRequest): RegisterUserResponse {
+    const user = this.users.findById(req.user.userId);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    const { password, ...userData } = user;
+    return userData;
   }
 
   @ApiOperation({

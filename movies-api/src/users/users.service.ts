@@ -42,6 +42,10 @@ export class UsersService implements OnModuleInit {
     return this.users.find((user) => user.email === email);
   }
 
+  public findById(userId: string): User | undefined {
+    return this.users.find((user) => user.userId === userId);
+  }
+
   public createPasswordHash(password: string): Promise<string> {
     return hash(password, SALT_ROUNDS);
   }

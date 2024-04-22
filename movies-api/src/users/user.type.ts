@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
   IsEmail,
@@ -58,6 +58,11 @@ export class LoginRequest {
   password: string;
 }
 
+export class LoginResponse {
+  @ApiProperty({ type: String, format: 'jwt', description: 'JSON Web Token' })
+  accessToken: string;
+}
+
 export class RegisterUserRequestBody
   extends LoginRequest
   implements Omit<User, 'userId' | 'email'>
@@ -83,6 +88,11 @@ export class RegisterUserRequestBody
   @IsString()
   @IsNotEmpty({ message: 'A vezetéknév megadása kötelező' })
   lastName: string;
+}
+
+export class RegisterUserResponse extends PickType(RegisterUserRequestBody, ['firstName', 'lastName'] as const ) {
+  @ApiProperty({ type: String, description: 'Felhasználó azonosítója', example: 'c3621d67-c304-41ad-b965-907f74d46bf2' })
+  userId: string;
 }
 
 export const validateLoginRequest = async (
