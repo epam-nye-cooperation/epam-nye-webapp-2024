@@ -1,9 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiCreatedResponse, ApiForbiddenResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, NotFoundException, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiForbiddenResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthToken, UserAuthToken } from '../auth/auth-token.decorator';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UsersService } from '../users/users.service';
-import { Comment, CommentMessage, CommentPath, CommentResponse } from './comment.dto';
+import { Comment, CommentMessage, CommentOrder, CommentPath, CommentQueryParams, CommentResponse, CommentResults } from './comment.dto';
 import { ForumPath } from './forum.dto';
 import { ForumService } from './forum.service';
 
@@ -14,17 +14,26 @@ export class CommentController {
   constructor(private forums: ForumService, private users: UsersService) {}
 
   @ApiOperation({ summary: 'Hozzászólások', description: 'Visszaadja az adott fórumhoz tartozó hozzászólásokat' })
-  @ApiOkResponse({ type: [Comment], description: 'A hozzászólások listája' })
+  @ApiOkResponse({ type: CommentResults, description: 'A hozzászólások listája' })
   @ApiNotFoundResponse({ description: 'A megadott fórum nem található' })
+  @ApiBadRequestResponse({ description: 'Hibás lapozási paraméterek' })
   @Get()
   getComments(
-    @Param() { forumId }: ForumPath
+    @Param() { forumId }: ForumPath,
+    @Query() { offset = 0, limit = 20, orderBy }: CommentQueryParams
   ) {
     const forum = this.forums.getForum(forumId);
     if (!forum) {
       throw new NotFoundException('A keresett fórum nem található');
     }
-    return forum.comments.map((comment) => comment.toResponse(this.users));
+    const comments = [...forum.comments].sort((commentA, commentB) => {
+      const diff = commentA.createdAt.getTime() - commentB.createdAt.getTime();
+      return orderBy === CommentOrder.ASC ? diff : -diff;
+    });
+    return {
+      comments: comments.slice(offset, offset + limit)?.map((comment) => comment.toResponse(this.users)),
+      total: comments.length,
+    };
   }
 
   @ApiOperation({ summary: 'Hozzászólás hozzáadasa', description: 'Új hozzászólás hozzáadasa a fórumhoz - csak belépett felhasználóknak' })
@@ -45,6 +54,7 @@ export class CommentController {
 
   @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Hozzászólás módosítása', description: 'A hozzászólást csak annak létrehozója módosíthatja' })
   @ApiOkResponse({ type: [Comment], description: 'A hozzászólások listája' })
   @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @ApiNotFoundResponse({ description: 'A megadott fórum vagy hozzászólás nem található' })
@@ -61,10 +71,11 @@ export class CommentController {
 
   @ApiBearerAuth('bearer')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Hozzászólás törlése', description: 'A hozzászólást a fórum tulajdonosa vagy a hozzászólás létrehozója törölheti' })
   @ApiNoContentResponse({ description: 'Hozzászólás sikeresen törölve' })
   @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @ApiNotFoundResponse({ description: 'A megadott fórum vagy hozzászólás nem található' })
-  @ApiForbiddenResponse({ description: 'Hozzáférés megtagadva - csak az eredeti felhasználó töröltheti a hozzászólást' })
+  @ApiForbiddenResponse({ description: 'Hozzáférés megtagadva - csak az eredeti felhasználó vagy fórum tulajdonosa töröltheti a hozzászólást' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('/:commentId')
   async deleteComment(

@@ -1,10 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNotEmpty, IsString, IsUUID, MaxLength } from 'class-validator';
+import { IsDate, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, IsUUID, MaxLength, Min } from 'class-validator';
 import { v4 as UUId } from 'uuid';
 import { ToDate } from '../decorators/transform.to-date';
 import { TrimmedText } from '../decorators/transform.trimmed-text';
 import { UsersService } from '../users/users.service';
 import { UserResponse } from '../users/user.type';
+import { Transform } from 'class-transformer';
+import { ToNumber } from 'src/decorators/transform.to-number';
 
 export interface BaseComment {
   id: string;
@@ -24,11 +26,7 @@ export class CommentPath {
 }
 
 export class CommentMessage {
-  @ApiProperty({
-    type: String,
-    description: 'Hozzászólás',
-    example: '',
-  })
+  @ApiProperty({ type: String, description: 'Hozzászólás', example: 'Új hozzászólás' })
   @TrimmedText()
   @IsString()
   @IsNotEmpty({ message: 'A hozzászólás nem lehet üres' })
@@ -105,4 +103,38 @@ export const CommentExample: CommentResponse = {
     firstName: 'Keresztnév',
     lastName: 'Vezetéknév',
   },
+}
+
+export enum CommentOrder {
+  ASC = 'ASC',
+  DESC = 'DESC',
+};
+
+export class CommentQueryParams {
+  @ApiProperty({ type: Number, description: 'Lapozás - kezdő elem', example: 0, required: false })
+  @ToNumber()
+  @IsOptional()
+  @IsInt({ message: 'Nem egész szám' })
+  @Min(0, { message: 'Pozitív egész szám' })
+  offset?: number = 0;
+
+  @ApiProperty({ type: Number, description: 'Lapozás - elemszám', example: 20, required: false })
+  @ToNumber()
+  @IsOptional()
+  @IsInt({ message: 'Nem egész szám' })
+  @Min(0, { message: 'Pozitív egész szám' })
+  limit?: number = 20;
+
+  @ApiProperty({ enum: CommentOrder, description: 'hozzászólások sorrendje', example: CommentOrder.DESC, required: false })
+  @IsOptional()
+  @IsEnum(CommentOrder, { message: 'A rendezés csak ASC vagy DESC értéket vehet fel' })
+  orderBy?: CommentOrder = CommentOrder.DESC;
+}
+
+export class CommentResults {
+  @ApiProperty({ type: [Comment], description: 'A fórumhoz tartozó kommentek' })
+  comments: Comment[];
+
+  @ApiProperty({ type: Number, description: 'Az összes hozzászólás száma' })
+  total: number;
 }

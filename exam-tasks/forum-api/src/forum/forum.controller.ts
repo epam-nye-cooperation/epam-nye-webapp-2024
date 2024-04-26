@@ -13,8 +13,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import {
+  ApiBadRequestResponse,
   ApiBearerAuth,
   ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -46,6 +49,7 @@ export class ForumController {
     description: 'Keresés a fórumok és hozzászólások között tartalom és idő szerint',
   })
   @ApiOkResponse({ type: [ForumResponse] })
+  @ApiBadRequestResponse({ description: 'Hibás keresési feltételek' })
   @Get()
   getForums(
     @AuthToken() token: UserAuthToken,
@@ -76,7 +80,8 @@ export class ForumController {
     summary: 'Fórum létrehozása',
     description: 'Új fórum létrehozása címmel és leírással, bejelentkezett felhasználó segítségével'
   })
-  @ApiOkResponse({ type: ForumResponse })
+  @ApiCreatedResponse({ type: ForumResponse })
+  @ApiBadRequestResponse({ description: 'Hibás bemeneti paraméterek' })
   @ApiConflictResponse({ description: 'Fórum a megadott címmel már létezik' })
   @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @ApiBearerAuth('bearer')
@@ -98,6 +103,7 @@ export class ForumController {
   })
   @ApiOkResponse({ description: 'Sikeres módosítás' })
   @ApiConflictResponse({ description: 'Fórum a megadott címmel már létezik' })
+  @ApiForbiddenResponse({ description: 'Hozzáférés megtagadva' })
   @ApiNotFoundResponse({ description: 'A megadott fórum nem található' })
   @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @Patch('/:forumId')
@@ -121,6 +127,7 @@ export class ForumController {
     description: 'Megadott fórum és a hozzátartozó hozzászólások törlése - csak az törölheti, aki korábban létrehozta'
   })
   @ApiNotFoundResponse({ description: 'A keresett fórum nem található' })
+  @ApiForbiddenResponse({ description: 'Hozzáférés megtagadva' })
   @ApiNoContentResponse({ description: 'Fórum sikeresen eltávolítva' })
   @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @HttpCode(HttpStatus.NO_CONTENT)

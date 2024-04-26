@@ -94,10 +94,10 @@ export class ForumService implements OnModuleInit {
 
   async createForum(userId: string, { title, description }: AddForum): Promise<StoredForum> {
     const existing = this.isForumExists(title);
-    if (existing.length > 0) {
+    if (existing) {
       throw new ConflictException({
         message: 'A megadott néven már létezik egy vagy több fórum',
-        existing: existing.map(({ id, title }) => ({ id, title })),
+        existing: { id: existing.id, title: existing.title },
       });
     }
     const add = new StoredForum({
@@ -127,10 +127,10 @@ export class ForumService implements OnModuleInit {
     const update = new StoredForum(forum);
     if (title) {
       const existing = this.isForumExists(title);
-      if (existing.length && (existing.length > 1 || existing[0].id !== forum.id)) {
+      if (existing && existing.id !== forum.id) {
         throw new ConflictException({
-          message: 'A megadott néven már létezik egy vagy több fórum',
-          existing: existing.map(({ id, title }) => ({ id, title })),
+          message: 'A megadott néven már létezik fórum',
+          existing: { id: existing.id, title: existing.title },
         });
       }
     }
@@ -207,7 +207,7 @@ export class ForumService implements OnModuleInit {
     const comment = forum.comments.find((comment) => comment.id === commentId);
     if (!comment) {
       throw new NotFoundException('A megadott hozzászólás nem található');
-    } else if (comment.userId !== userId) {
+    } else if (comment.userId !== userId || forum.createdBy !== userId) {
       throw new ForbiddenException('Hozzáférés megtagadva');
     }
     const update = new StoredForum({
@@ -220,7 +220,7 @@ export class ForumService implements OnModuleInit {
   }
 
   protected isForumExists(title: string) {
-    return Array.from(this.forums.values()).filter(this.filters.byTitle(title));
+    return Array.from(this.forums.values()).find(this.filters.byTitle(title));
   }
 
   protected async saveDatabase() {

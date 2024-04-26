@@ -18,6 +18,7 @@ $ yarn install
 Telepítés után hozz létre egy `.env` file-t a package.json mellé. Ez tartalmazza az alkalmazáshoz szükséges plusz konfigurációt. Tartalma:
 ```bash
 API_PORT=5000
+LANGUAGE=hu-HU
 # sample value - override is highly suggested
 JWT_TOKEN_SECRET=This1s@secr3tKey
 ```

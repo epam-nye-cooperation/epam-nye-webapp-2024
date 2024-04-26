@@ -17,9 +17,9 @@ export class ForumFilters {
     }
     const search = query.toLocaleLowerCase(this.lang);
     return ({ title, description, comments }: Forum) => (
-      title.toLocaleLowerCase(this.lang).indexOf(search) > -1 ||
-      description.toLocaleLowerCase(this.lang).indexOf(search) > -1 ||
-      comments.some((comment) => comment.message.toLocaleLowerCase(this.lang).indexOf(search) > -1)
+      title.toLocaleLowerCase(this.lang).includes(search) ||
+      description.toLocaleLowerCase(this.lang).includes(search) ||
+      comments.some((comment) => comment.message.toLocaleLowerCase(this.lang).includes(search))
     );
   }
 

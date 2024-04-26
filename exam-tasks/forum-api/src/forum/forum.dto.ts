@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsBoolean, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, MinLength, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, MaxLength, MinLength, ValidateNested } from 'class-validator';
 import { Comment, CommentExample, CommentResponse } from './comment.dto';
 import { ToBoolean } from '../decorators/transform.to-boolean';
 import { ToDate } from '../decorators/transform.to-date';
@@ -45,12 +45,14 @@ export class AddForum implements BaseForum {
   @TrimmedText()
   @IsNotEmpty({ message: 'Adja meg a fórum leírását!' })
   @IsString({ message: 'Adja meg a fórum nevét!' })
+  @MaxLength(100, { message: 'A cím legfeljebb 100 karakter lehet' })
   title: string;
 
   @ApiProperty({ type: String, description: 'Fórum leírás', example: 'Fórum részletes leírása' })
   @TrimmedText()
   @IsNotEmpty({ message: 'Adja meg a fórum leírását!' })
   @IsString({ message: 'Adja meg a fórum leírását!' })
+  @MaxLength(250, { message: 'A leírás legfeljebb 250 karakter lehet' })
   description: string;
 }
 
@@ -93,21 +95,26 @@ export class StoredForum extends AddForum implements Forum {
   }
 
   public getLastComment(): Comment | null {
+    if (!this.comments.length) {
+      return null;
+    }
     return this.comments.reduce((latest, comment) => {
       return latest.createdAt.getTime() < comment.createdAt.getTime() ? comment : latest;
-    }, null) ?? null;
+    }) ?? null;
   }
 
   public toResponse(users: UsersService): ForumResponse {
     const { id, title, description, createdBy, createdAt } = this;
     const { password, ...user } = users.findById(createdBy) || {};
     const lastComment = this.getLastComment();
+    const commentsCount = this.comments.length;
     return {
       id,
       title,
       description,
       createdAt,
       createdBy: (user as UserResponse) ?? null,
+      commentsCount,
       lastComment: lastComment?.toResponse(users) ?? null,
     };
   }
@@ -140,6 +147,9 @@ export class ForumResponse implements ForumResponseInterface {
 
   @ApiProperty({ example: CommentExample })
   lastComment: CommentResponse | null;
+
+  @ApiProperty({ example: 1 })
+  commentsCount: number;
 }
 
 export class SearchForums {
