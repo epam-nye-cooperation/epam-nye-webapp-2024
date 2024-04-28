@@ -1,6 +1,6 @@
 import { v4 as UUId } from 'uuid';
-import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException, OnModuleInit } from '@nestjs/common';
-import { readFile } from 'fs/promises';
+import { BadRequestException, ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { readFile, writeFile } from 'fs/promises';
 import { resolve } from 'path';
 import { filterXSS } from 'xss';
 import { Configuration } from '../app.configuration';
@@ -61,7 +61,7 @@ export class NotesService implements OnModuleInit {
     return this.notes.get(userId)?.get(noteId) ?? null;
   }
 
-  addNote(userId: string, note: CreateNote): Note {
+  async addNote(userId: string, note: CreateNote): Promise<Note> {
     const add: Note = new Note({
       title: filterXSS(note.title),
       color: note.color,
@@ -75,10 +75,14 @@ export class NotesService implements OnModuleInit {
       this.notes.set(userId, new Map());
     }
 
+    if (this.noteExists(userId, add)) {
+      throw new ConflictException('A megadott néven már létezik jegyzet!');
+    }
+
     const userNotes = this.notes.get(userId);
     userNotes.set(add.id, add);
     this.notes.set(userId, userNotes);
-
+    await this.save();
     return add;
   };
 
@@ -88,7 +92,7 @@ export class NotesService implements OnModuleInit {
       throw new NotFoundException('A megadott jegyzet nem található');
     }
     if ([typeof title, typeof color, typeof isFavorite].every((type) => type === 'undefined')) {
-      throw new BadRequestException('Érvénytelen paraméterek: legalább az egyik rendelkezzen értékkel: `title`, `color`, `isFavorite`');
+      throw new BadRequestException('Érvénytelen paraméterek: legalább az egyik értékkel rendkelkezzen: `title`, `color`, `isFavorite`');
     }
     const update = new Note(note);
     update.isFavorite = isFavorite ?? note.isFavorite;
@@ -101,23 +105,29 @@ export class NotesService implements OnModuleInit {
         value, property, constraints
       })));
     }
+    const exists = this.noteExists(userId, update);
+    if (exists && exists.id !== noteId) {
+      throw new ConflictException('Ilyen néven már létezik jegyzet');
+    }
 
     const userNotes = this.notes.get(userId);
     userNotes.set(note.id, update);
     this.notes.set(userId, userNotes);
-
+    await this.save();
     return update;
   }
 
-  deleteNote(userId: string, noteId: string) {
+  async deleteNote(userId: string, noteId: string) {
     const userNotes = this.notes.get(userId);
     if (!userNotes.has(noteId)) {
       throw new NotFoundException('A megadott jegyzet nem található');
     }
-    return userNotes.delete(noteId);
+    const isRemoved = userNotes.delete(noteId);
+    await this.save();
+    return isRemoved;
   }
 
-  addItem(userId: string, noteId: string, item: AddNoteItem): Note {
+  async addItem(userId: string, noteId: string, item: AddNoteItem): Promise<Note> {
     const note = this.getNote(userId, noteId);
     if (!note) {
       throw new NotFoundException('A megadott jegyzet nem található');
@@ -137,13 +147,17 @@ export class NotesService implements OnModuleInit {
     userNotes.set(note.id, note);
     this.notes.set(userId, userNotes);
 
+    await this.save();
     return note;
   }
 
-  updateItem(userId: string, noteId: string, taskId: string, item: BaseNoteItem): Note {
+  async updateItem(userId: string, noteId: string, taskId: string, item: BaseNoteItem): Promise<Note> {
     const note = this.getNote(userId, noteId);
     if (!note) {
       throw new NotFoundException('A megadott jegyzet nem található');
+    }
+    if (!note.items.find((item) => item.id === taskId)) {
+      throw new NotFoundException('A megadott feladat nem található');
     }
     note.items = note.items?.map((noteItem) => {
       return noteItem.id === taskId ? {
@@ -156,19 +170,41 @@ export class NotesService implements OnModuleInit {
     userNotes.set(note.id, note);
     this.notes.set(userId, userNotes);
 
+    await this.save();
     return note;
   }
 
-  removeItem(userId: string, noteId: string, taskId: string): Note {
+  async removeItem(userId: string, noteId: string, taskId: string): Promise<Note> {
     const note = this.getNote(userId, noteId);
     if (!note) {
       throw new NotFoundException('A megadott jegyzet nem található');
     }
+    const size = note.items?.length || 0;
     note.items = note.items?.filter((item) => item.id !== taskId);
+    const changed = note.items?.length || 0;
+    if (size === changed) {
+      throw new NotFoundException('A megadott feladat nem található');
+    }
     const userNotes = this.notes.get(userId);
     userNotes.set(note.id, note);
     this.notes.set(userId, userNotes);
+    await this.save();
     return note;
+  }
+
+  protected noteExists(userId: string, note: Note) {
+    const notes = this.notes.get(userId);
+    return Array.from(notes.values()).find(this.filters.byTitle(note.title));
+  }
+
+  private async save() {
+    const rawData = Array.from(this.notes.entries()).reduce((data, [userId, note]) => {
+      return {
+        ...data,
+        [userId]: Array.from(note.values()),
+      };
+    }, {});
+    await writeFile(DB_PATH, JSON.stringify(rawData, undefined, 2), 'utf-8');
   }
 
 }

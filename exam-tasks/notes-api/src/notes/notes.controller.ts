@@ -15,17 +15,9 @@ import { BaseNote, CreateNote, Note, NotesPath, SearchNotes } from './notes.dto'
 export class NotesController {
   constructor(private notes: NotesService) {}
 
-  @ApiOperation({
-    summary: 'Felhasználó jegyzetei',
-    description: 'Keresés bejelentkezett felhasználó által rögzített jegyzetek között'
-  })
-  @ApiOkResponse({
-    type: [Note],
-    description: 'A keresési feltételeknek megfelelő jegyzetek listája',
-  })
-  @ApiBadRequestResponse({
-    description: 'Hibás keresési feltételek'
-  })
+  @ApiOperation({ summary: 'Felhasználó jegyzetei', description: 'Keresés bejelentkezett felhasználó által rögzített jegyzetek között' })
+  @ApiOkResponse({ type: [Note], description: 'A keresési feltételeknek megfelelő jegyzetek listája' })
+  @ApiBadRequestResponse({ description: 'Hibás keresési feltételek' })
   @Get()
   searchNotes(
     @AuthToken() { userId }: UserAuthToken,
@@ -34,37 +26,21 @@ export class NotesController {
     return this.notes.searchNotes(userId, searchParams);
   }
 
-  @ApiOperation({
-    summary: 'Új jegyzet létrehozása',
-    description: 'Új jegyzetet készít a felhasználó részére'
-  })
+  @ApiOperation({ summary: 'Új jegyzet létrehozása', description: 'Új jegyzetet készít a felhasználó részére' })
   @ApiBody({ type: CreateNote })
-  @ApiCreatedResponse({
-    type: Note,
-    description: 'A rögzített jegyzet, amely tartalmazza a létrehozás időpontját, az azonosítót és egy üres feladatlistát'
-  })
+  @ApiCreatedResponse({ type: Note, description: 'A rögzített jegyzet, amely tartalmazza a létrehozás időpontját, az azonosítót és egy üres feladatlistát' })
   @Post()
   addNote(
     @AuthToken() { userId }: UserAuthToken,
     @Body() note: CreateNote
-  ): Note {
+  ): Promise<Note> {
     return this.notes.addNote(userId, note);
   }
 
-  @ApiOperation({
-    summary: 'Jegyzet lekérdezése',
-    description: 'Bejelentkezett felhasználó megadott azonosítójú jegyzete',
-  })
-  @ApiOkResponse({
-    description: 'A keresett jegyzet',
-    type: Note,
-  })
-  @ApiBadRequestResponse({
-    description: 'Érvénytelen azonosító'
-  })
-  @ApiNotFoundResponse({
-    description: 'A jegyzet nem található'
-  })
+  @ApiOperation({ summary: 'Jegyzet lekérdezése', description: 'Bejelentkezett felhasználó megadott azonosítójú jegyzete' })
+  @ApiOkResponse({ type: Note, description: 'A keresett jegyzet' })
+  @ApiBadRequestResponse({ description: 'Érvénytelen azonosító' })
+  @ApiNotFoundResponse({ description: 'A jegyzet nem található' })
   @Get('/:noteId')
   getNote(
     @AuthToken() { userId }: UserAuthToken,
@@ -77,49 +53,30 @@ export class NotesController {
     return note;
   }
 
-  @ApiOperation({
-    summary: 'Jegyzet módosítása',
-    description: 'Módosítja egy jegyzet név ("title"), szín ("color") és kedvenc ("isFavorite") tulajdonságait. Legalább az egyik információ megadása kötelező.',
-  })
-  @ApiBody({
-    type: CreateNote
-  })
-  @ApiOkResponse({
-    description: 'A jegyzet sikeresen módosítva',
-    type: Note,
-  })
-  @ApiBadRequestResponse({
-    description: 'Hibás bemeneti paraméterek'
-  })
+  @ApiOperation({ summary: 'Jegyzet módosítása', description: 'Módosítja egy jegyzet név ("title"), szín ("color") és kedvenc ("isFavorite") tulajdonságait. Legalább az egyik információ megadása kötelező.' })
+  @ApiBody({ type: CreateNote })
+  @ApiOkResponse({ type: Note, description: 'A jegyzet sikeresen módosítva' })
+  @ApiBadRequestResponse({ description: 'Hibás bemeneti paraméterek' })
   @Patch('/:noteId')
   async updateNote(
     @AuthToken() { userId }: UserAuthToken,
     @Param() { noteId }: NotesPath,
     @Body() { title, color, isFavorite }: BaseNote
-  ) {
+  ): Promise<Note> {
     return this.notes.updateNote(userId, noteId, { title, color, isFavorite });
   }
 
-  @ApiOperation({
-    summary: 'Jegyzet törlése',
-    description: 'Töröl egy meghatározott elemet a felhasználó jegyzetei közül'
-  })
-  @ApiNoContentResponse({
-    description: 'Jegyzet sikeresen eltávolítva'
-  })
+  @ApiOperation({ summary: 'Jegyzet törlése', description: 'Töröl egy meghatározott elemet a felhasználó jegyzetei közül' })
+  @ApiNoContentResponse({ description: 'Jegyzet sikeresen eltávolítva' })
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiBadRequestResponse({
-    description: 'Érvénytelen azonosító'
-  })
-  @ApiNotFoundResponse({
-    description: 'A megadott jegyzet nem található'
-  })
+  @ApiBadRequestResponse({ description: 'Érvénytelen azonosító' })
+  @ApiNotFoundResponse({ description: 'A megadott jegyzet nem található' })
   @Delete('/:noteId')
-  deleteNote(
+  async deleteNote(
     @AuthToken() { userId }: UserAuthToken,
     @Param() { noteId }: NotesPath
   ) {
-    this.notes.deleteNote(userId, noteId);
+    await this.notes.deleteNote(userId, noteId);
   }
 
 }

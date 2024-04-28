@@ -21,6 +21,11 @@ export class NotesFilters {
     );
   }
 
+  byTitle(query: string): NoteFilter {
+    const search = query.toLocaleLowerCase(this.lang);
+    return ({ title }: Note) => title.toLocaleLowerCase(this.lang) === search;
+  }
+
   byFavorite(favorites?: boolean): NoteFilter {
     if (!favorites) {
       return Boolean;

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsBoolean, IsDate, IsEnum, IsOptional, IsString, IsUUID, MinLength, ValidateNested } from 'class-validator';
+import { IsBoolean, IsDate, IsEnum, IsOptional, IsString, IsUUID, MaxLength, MinLength, ValidateNested } from 'class-validator';
 import { ToBoolean } from '../decorators/transform.to-boolean';
 import { ToDate } from '../decorators/transform.to-date';
 
@@ -31,6 +31,7 @@ export class AddNoteItem implements BaseNoteItem {
   })
   @IsString()
   @MinLength(3, { message: ({ constraints }) => `A jegyzet neve legalább ${constraints[0]} karakter hosszú legyen` })
+  @MaxLength(100, { message: 'A feladat hossza legfeljebb 100 karakter lehet' })
   label: string;
 
   @ApiProperty({
@@ -74,6 +75,7 @@ export class CreateNote implements BaseNote {
   @Transform(({ value }) => typeof value === 'string' ? value.trim() : value)
   @IsString()
   @MinLength(3, { message: ({ constraints }) => `A jegyzet neve legalább ${constraints[0]} karakter hosszú legyen` })
+  @MaxLength(100, { message: 'A jegyzet neve maximum 100 karakter hosszú lehet' })
   title: string;
 
   @ApiProperty({

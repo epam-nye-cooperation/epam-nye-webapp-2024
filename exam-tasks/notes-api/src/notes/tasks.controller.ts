@@ -18,13 +18,8 @@ import { AddNoteItem, BaseNoteItem, NotesPath, TaskPath } from './notes.dto';
 export class TasksController {
   constructor(private notes: NotesService) {}
 
-  @ApiCreatedResponse({
-    description: 'A feladat hozzáadása sikeresen megtörtént'
-  })
-  @ApiOperation({
-    summary: 'Feladat hozzáadása',
-    description: 'Új feladatot hoz létre a jegyzeten belül'
-  })
+  @ApiOperation({ summary: 'Feladat hozzáadása', description: 'Új feladatot hoz létre a jegyzeten belül' })
+  @ApiCreatedResponse({ description: 'A feladat hozzáadása sikeresen megtörtént' })
   @Post()
   addNoteItem(
     @AuthToken() { userId }: UserAuthToken,
@@ -34,16 +29,9 @@ export class TasksController {
     return this.notes.addItem(userId, noteId, item);
   }
 
-  @ApiOperation({
-    summary: 'Feladat módosítása',
-    description: 'Módosítja a feladat nevét és hogy elvégzésre került-e; csak a megadott értéket módosítja'
-  })
-  @ApiBody({
-    type: AddNoteItem
-  })
-  @ApiOkResponse({
-    description: 'A feladat módosítása sikeresen megtörtént'
-  })
+  @ApiOperation({ summary: 'Feladat módosítása', description: 'Módosítja a feladat nevét és hogy elvégzésre került-e; csak a megadott értéket módosítja' })
+  @ApiBody({ type: AddNoteItem })
+  @ApiOkResponse({ description: 'A feladat módosítása sikeresen megtörtént' })
   @Patch('/:taskId')
   updateNoteItem(
     @AuthToken() { userId }: UserAuthToken,
@@ -53,22 +41,15 @@ export class TasksController {
     return this.notes.updateItem(userId, noteId, taskId, item);
   }
 
-  @ApiOperation({
-    summary: 'Feladat törlése',
-    description: 'Töröl egy meghatározott feladatot a felhasználó jegyzetéről'
-  })
-  @ApiNoContentResponse({
-    description: 'Feladat sikeresen eltávolítva'
-  })
+  @ApiOperation({ summary: 'Feladat törlése', description: 'Töröl egy meghatározott feladatot a felhasználó jegyzetéről' })
+  @ApiNoContentResponse({ description: 'Feladat sikeresen eltávolítva' })
   @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiBadRequestResponse({
-    description: 'Érvénytelen azonosító'
-  })
+  @ApiBadRequestResponse({ description: 'Érvénytelen azonosító' })
   @Delete('/:taskId')
-  deleteNoteItem(
+  async deleteNoteItem(
     @AuthToken() { userId }: UserAuthToken,
     @Param() { noteId, taskId }: TaskPath
   ) {
-    this.notes.removeItem(userId, noteId, taskId);
+    await this.notes.removeItem(userId, noteId, taskId);
   }
 }

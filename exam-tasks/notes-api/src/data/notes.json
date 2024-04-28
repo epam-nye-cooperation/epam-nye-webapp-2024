@@ -1,8 +1,6 @@
 {
   "5c837fa6-3bf6-4e74-ab3a-80b996081d64": [
     {
-      "id": "9c328eee-807a-4e6b-bcc3-8188cf16b9c0",
-      "title": "TODO list",
       "color": "yellow",
       "items": [
         {
@@ -79,9 +77,24 @@
           "label": "Watch Star Wars",
           "isDone": false,
           "id": "53e0e8c4-bdb5-4057-ac9a-c7205559acf6"
+        },
+        {
+          "id": "4c14d834-8e3a-4e91-a15c-6274be882032",
+          "isDone": false,
+          "label": "Buy beer"
         }
       ],
+      "id": "9c328eee-807a-4e6b-bcc3-8188cf16b9c0",
+      "title": "TODO list",
       "creationDate": "2024-03-07T23:55:27.431Z"
+    },
+    {
+      "color": "yellow",
+      "isFavorite": true,
+      "items": [],
+      "id": "3896648c-748e-4e83-b32a-8639f3263c90",
+      "title": "New TODO list",
+      "creationDate": "2024-04-28T15:39:00.466Z"
     }
   ]
 }
