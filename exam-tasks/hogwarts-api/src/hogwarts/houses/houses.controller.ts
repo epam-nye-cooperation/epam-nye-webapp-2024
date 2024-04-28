@@ -2,14 +2,22 @@ import { Controller, Get, NotFoundException, Param, UseGuards } from '@nestjs/co
 import { ApiBadRequestResponse, ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { HouseService } from './houses.service';
 import { House, HouseListItem, HouseRequest } from './houses.type';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { User, UserListItem } from 'src/users/user.type';
+import { AuthToken, UserAuthToken } from '../../auth/auth-token.decorator';
+import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
+import { User, UserListItem } from '../../users/user.type';
 
 @ApiTags('Houses')
 @Controller('/houses')
 export class HouseController {
 
   constructor(private houses: HouseService) {}
+
+  @ApiOperation({ operationId: 'getHouses', summary: 'Házak', description: 'Visszadja az elérhető házak listáját, limitált adatokkal' })
+  @ApiOkResponse({ type: [HouseListItem], description: 'Házak' })
+  @Get()
+  getHouses(): HouseListItem[] {
+    return this.houses.getHouses().map((house) => house.toList());
+  }
 
   @ApiOperation({ operationId: 'getHouseById', summary: 'Részletes házadatok', description: 'Visszaadja a ház részletes adatait' })
   @ApiOkResponse({ type: House, description: 'Részletes házinformációk' })
@@ -22,13 +30,6 @@ export class HouseController {
       throw new NotFoundException('A keresett ház nem található');
     }
     return house;
-  }
-
-  @ApiOperation({ operationId: 'getHouses', summary: 'Házak', description: 'Visszadja az elérhető házak listáját, limitált adatokkal' })
-  @ApiOkResponse({ type: [HouseListItem], description: 'Házak' })
-  @Get()
-  getHouses(): HouseListItem[] {
-    return this.houses.getHouses().map((house) => house.toList());
   }
 
   @ApiOperation({ operationId: 'getMembers', summary: 'Ház tanulói', description: 'Visszaadja a házakhoz tartozó tagok listáját' })

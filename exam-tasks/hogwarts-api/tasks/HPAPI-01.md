@@ -1,15 +1,15 @@
-# FA-01 - Belépés
+# HPAPI-01 - Belépés
 
-## Mint regisztrált felhasználó, szeretnék belépni, hogy elérhessem a ForumAPI privát szolgáltatásait
+## Mint regisztrált felhasználó, szeretnék belépni, hogy folytassam tanulmányaimat
 
 ### Pontok: 1
 ### Szolgáltatás: [POST /user/login](http://localhost:5000/api-doc#/Users/AuthController_login)
 ### Prioritás: magas
 
-A feladat egy belépési oldal létrehozása, amin egy már regisztrált felhasználó be tud lépni az általa megadott email címmel és jelszóval.  
-Sikeres belépést követően a szolgáltatás által visszaadott token-t kliens oldalon el kell menteni, hogy más szolgáltatásokhoz is igénybe tudják venni (például forum létrehozása, módosítása vagy hozzászólás). A felhasználót irányítsuk át a kezdőlapra.  
+A feladat egy belépési oldal létrehozása, amin egy már regisztrált felhasználó be tud lépni az általa megadott email címmel és jelszóval. (figyelem: kapcsolat a [kezdőlappal](./HPAPI-07.md))  
+Sikeres belépést követően a szolgáltatás által visszaadott token-t kliens oldalon el kell menteni, hogy más szolgáltatásokhoz is igénybe tudják venni (például bájitalok elérése). A felhasználót irányítsuk át a kezdőlapra.  
 Amennyiben a belépés sikertelen, úgy azt jelezzük a felhasználó számára. Hibás bemeneti adatokat az oldal nem küldhet a szolgáltatás irányába, kliens oldalon validálni kell azokat.  
-Ha az oldalt egy már korábban belépett felhasználó érné el, irányítsuk át a felhasználó [profil oldalára](./FA-03.md).
+Ha az oldalt egy már korábban belépett felhasználó érné el, irányítsuk át a felhasználó [profil oldalára](./HPAPI-03.md).
 
 #### Belépési adatok:
 - Felhasználónév
@@ -28,8 +28,8 @@ Ha az oldalt egy már korábban belépett felhasználó érné el, irányítsuk 
 #### Példa bemeneti adatra:
 ```
 {
-  "username": "admin@local.com",
-  "password": "admin123"
+  "username": "albus.dumbledore@hogwarts.co.uk"",
+  "password": "LemonDr0p"
 }
 ```
 

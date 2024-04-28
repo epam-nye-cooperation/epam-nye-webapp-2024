@@ -29,6 +29,7 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 import {
   ChangePasswordBody,
   LoginRequest,
+  LoginResponse,
   RegisterUserRequestBody,
   RegisterUserResponse,
   UpdateUserDataBody,
@@ -74,14 +75,14 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Belépés', description: 'Regisztrált felhasználó beléptetése.' })
-  @ApiCreatedResponse({ description: 'JWT Bearer token - 2 órán át érvényes' })
+  @ApiCreatedResponse({ type: LoginResponse, description: 'JWT Bearer token - 2 órán át érvényes' })
   @ApiUnauthorizedResponse({ description: 'Hibás felhasználónév vagy jelszó' })
   @UseGuards(LocalAuthGuard)
   @Post('/login')
   @ApiBody({
     type: LoginRequest,
   })
-  public async login(@Request() req: AuthRequest) {
+  public async login(@Request() req: AuthRequest): Promise<LoginResponse> {
     const accessToken = await this.auth.login(req.user);
     return {
       accessToken,

@@ -1,5 +1,5 @@
 import { Controller, Get, NotFoundException, Param, Query, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { Spell, SpellIdRequest, SpellSearchParams } from './spells.type';
 import { SpellService } from './spells.service';
 import { SearchResults } from '../search/search.type';
@@ -15,6 +15,7 @@ export class SpellsController {
 
   @ApiOperation({ operationId: 'searchSpell', summary: 'Varázslat keresése', description: 'Keresés a varázslatok között név, kategória, vagy fény szín alapján' })
   @ApiOkResponse({ type: SearchResults, description: 'Találatok' })
+  @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @Get()
   searchSpell(@Query() params: SpellSearchParams): SearchResults {
     return this.spells.search(params);
@@ -22,6 +23,7 @@ export class SpellsController {
 
   @ApiOperation({ operationId: 'getSpell', summary: 'Varázslat adatai', description: 'Az adott varázslat részletes adatai' })
   @ApiOkResponse({ type: Spell, description: 'Varázslat' })
+  @ApiUnauthorizedResponse({ description: 'Ismeretlen felhasználó' })
   @ApiNotFoundResponse({ description: 'A keresett varázslat nem található' })
   @Get('/:spellId')
   getSpellById(@Param() { spellId }: SpellIdRequest) {

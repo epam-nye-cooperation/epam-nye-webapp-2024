@@ -1,5 +1,5 @@
 import { Body, Controller, ForbiddenException, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiConflictResponse, ApiCreatedResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConflictResponse, ApiCreatedResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthToken, UserAuthToken } from 'src/auth/auth-token.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { LearnService } from 'src/hogwarts/learn/learn.service';
@@ -18,17 +18,18 @@ export class LearningController {
 
   constructor(private users: UsersService, private learn: LearnService) {}
 
-  @ApiOperation({ operationId: 'getLearnedSpells', 'summary': 'Megtanult varázslatok', description: 'Visszaadja a már megtanult varázslatokat' })
+  @ApiOperation({ operationId: 'getLearnedSpells', 'summary': 'Megtanult varázslatok', description: 'Visszaadja a már megtanult varázslatok azonosítóit' })
+  @ApiOkResponse({ type: [String], description: 'A megtanult varázslatok azonosítói' })
   @Get('/spells')
   getLearnedSpells(
     @AuthToken() { userId }: UserAuthToken
   ) {
     this.checkUserEligibility(userId)
-    return this.learn.getLearnedSpells(userId).map((spell) => spell.searchResults());
+    return this.learn.getLearnedSpells(userId).map((spell) => spell.spellId);
   }
 
   @ApiOperation({ operationId: 'learnSpell', summary: 'Varázslat elsajátítása', description: 'A tanuló megtanulja a varázslatot használni és később használni is tudja azt.' })
-  @ApiCreatedResponse({ type: Spell, description: 'Az újjonnan megtanult varázslat' })
+  @ApiCreatedResponse({ type: Spell, description: 'Az újonnan megtanult varázslat' })
   @ApiConflictResponse({ description: 'A varázslatot már megtanulta' })
   @ApiNotFoundResponse({ description: 'A varázslat nem található' })
   @Post('/spells')
@@ -40,21 +41,22 @@ export class LearningController {
     return this.learn.learnSpell(user, spellId);
   }
 
-  @ApiOperation({ operationId: 'getLearnedPotions', summary: 'Megtanult bájitalok', description: 'Visszaadja a már megtanult bájitalok listáját' })
+  @ApiOperation({ operationId: 'getLearnedPotions', summary: 'Megtanult bájitalok', description: 'Visszaadja a már megtanult bájitalok azonosítóit' })
+  @ApiOkResponse({ type: [String], description: 'A megtanult bájitalok azonosítói' })
   @ApiCreatedResponse({ type: [SearchResultItem], description: 'A megtanult bájitalok listája' })
   @Get('/potions')
   getLearnedPotions(
     @AuthToken() { userId }: UserAuthToken
   ) {
     this.checkUserEligibility(userId);
-    return this.learn.getLearnedPotions(userId).map((potion) => potion.searchResults());
+    return this.learn.getLearnedPotions(userId).map((potion) => potion.potionId);
   }
 
   @ApiOperation({ operationId: 'learnPotion', summary: 'Bájital elsajátítása', description: 'A tanuló megtanulja a bájitalt elkészíteni és később használni is tudja. Fokozattól függően a ház különböző pontokat kap' })
-  @ApiCreatedResponse({ type: Potion, description: 'Az újjonan megtanult bájital' })
-  @ApiConflictResponse({ description: 'Ez Már megtanult bájial' })
+  @ApiCreatedResponse({ type: Potion, description: 'Az újonan megtanult bájital' })
+  @ApiConflictResponse({ description: 'Ez már megtanult bájial' })
   @ApiNotFoundResponse({ description: 'A bájital nem található' })
-  @ApiForbiddenResponse({ description: 'Alacsony képzettségi szint' })
+  //@ApiForbiddenResponse({ description: 'Alacsony képzettségi szint' })
   @Post('/potions')
   async learnPotion(
     @AuthToken() { userId }: UserAuthToken,

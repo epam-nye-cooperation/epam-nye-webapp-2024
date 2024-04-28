@@ -18,6 +18,7 @@ export interface StoredHouseData {
   heads: Name[];
   traits: string[];
   points: number;
+  image: string;
 }
 
 export enum HouseId {
@@ -84,6 +85,7 @@ export class House extends HouseListItem {
     this.houseId = raw.houseId as HouseId;
     this.name = raw.name;
     this.traits = raw.traits;
+    this.image = raw.image;
     this.points = raw.points;
   }
 
@@ -107,6 +109,7 @@ export class House extends HouseListItem {
       heads: this.heads,
       houseColors: this.houseColors,
       houseId: this.houseId,
+      image: this.image,
       name: this.name,
       traits: this.traits,
       points: this.points,

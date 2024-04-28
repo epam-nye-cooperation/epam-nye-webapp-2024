@@ -59,7 +59,7 @@ export class LearnService implements OnModuleInit {
   async learnPotion({ userId, house }: User, subjectId: string): Promise<Potion> {
     const studentSubjects = this.getLearnedMaterials(userId);
     if (!this.potionCanBeLearned(subjectId, studentSubjects.potion)) {
-      throw new ForbiddenException('Még nem vagy elég képzett ehhez a bájitalhoz');
+      throw new ForbiddenException('Ezt a bájitalt nem tanulhatod meg');
     }
     const potion = this.potions.getById(subjectId);
     studentSubjects.potion.add(potion.potionId);
@@ -98,7 +98,7 @@ export class LearnService implements OnModuleInit {
     if (history.has(potionId)) {
       throw new ConflictException('Ezt a bájitalt már megtanultad');
     }
-    const level = DIFFICULTIES.indexOf(potion.difficulty);
+    /*const level = DIFFICULTIES.indexOf(potion.difficulty);
     if (level === -1) {
       throw new InternalServerErrorException({ message: 'A bájital nehézségi foka nem megfelelő', potionId, difficulty: potion.difficulty });
     }
@@ -112,7 +112,8 @@ export class LearnService implements OnModuleInit {
       .map((id) => this.potions.getById(id))
       .filter(((potion) => potion.difficulty === required)).length;
 
-    return learnedPotions >= MIN_LEVEL;
+    return learnedPotions >= MIN_LEVEL;*/
+    return true;
   }
 
   private async save(): Promise<void> {
