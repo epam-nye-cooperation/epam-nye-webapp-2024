@@ -9,7 +9,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "Video Games & Consoles"
+      "video-games-consoles"
     ],
     "stock": 10
   },
@@ -23,7 +23,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
     },
     "categories": [
-      "Cellphones & Accessories"
+      "cellphones-accessories"
     ],
     "stock": 6
   },
@@ -37,8 +37,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "TV, Audio & Surveillance",
-      "Video Games & Consoles"
+      "tv-audio-surveillance",
+      "video-games-consoles"
     ],
     "stock": 9
   },
@@ -52,8 +52,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
     },
     "categories": [
-      "Video Games & Consoles",
-      "TV, Audio & Surveillance"
+      "video-games-consoles",
+      "tv-audio-surveillance"
     ],
     "stock": 2
   },
@@ -67,8 +67,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
     },
     "categories": [
-      "Video Games & Consoles",
-      "Vehicle Electronics & GPS"
+      "video-games-consoles",
+      "vehicle-electronics-gps"
     ],
     "stock": 2
   },
@@ -82,7 +82,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 4
     },
     "categories": [
-      "Cellphones & Accessories"
+      "cellphones-accessories"
     ],
     "stock": 7
   },
@@ -96,7 +96,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
     },
     "categories": [
-      "Cellphones & Accessories"
+      "cellphones-accessories"
     ],
     "stock": 5
   },
@@ -110,9 +110,9 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "Cellphones & Accessories",
-      "Video Games & Consoles",
-      "TV, Audio & Surveillance"
+      "cellphones-accessories",
+      "video-games-consoles",
+      "tv-audio-surveillance"
     ],
     "stock": 6
   },
@@ -126,7 +126,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
     },
     "categories": [
-      "Vehicle Electronics & GPS"
+      "vehicle-electronics-gps"
     ],
     "stock": 2
   },
@@ -140,8 +140,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 4
     },
     "categories": [
-      "Video Games & Consoles",
-      "TV, Audio & Surveillance"
+      "video-games-consoles",
+      "tv-audio-surveillance"
     ],
     "stock": 5
   },
@@ -155,8 +155,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 5
     },
     "categories": [
-      "Vehicle Electronics & GPS",
-      "Cameras & Photo"
+      "vehicle-electronics-gps",
+      "cameras-photo"
     ],
     "stock": 4
   },
@@ -170,7 +170,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "TV, Audio & Surveillance"
+      "tv-audio-surveillance"
     ],
     "stock": 6
   },
@@ -184,9 +184,9 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "Cellphones & Accessories",
-      "Computers & Tablets",
-      "Vehicle Electronics & GPS"
+      "cellphones-accessories",
+      "computers-tablets",
+      "vehicle-electronics-gps"
     ],
     "stock": 9
   },
@@ -200,7 +200,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
     },
     "categories": [
-      "Computers & Tablets"
+      "computers-tablets"
     ],
     "stock": 0
   },
@@ -214,9 +214,9 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
     },
     "categories": [
-      "Computers & Tablets",
-      "Cameras & Photo",
-      "TV, Audio & Surveillance"
+      "computers-tablets",
+      "cameras-photo",
+      "tv-audio-surveillance"
     ],
     "stock": 6
   },
@@ -230,8 +230,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 5
     },
     "categories": [
-      "Vehicle Electronics & GPS",
-      "Cameras & Photo"
+      "vehicle-electronics-gps",
+      "cameras-photo"
     ],
     "stock": 9
   },
@@ -245,9 +245,9 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "Vehicle Electronics & GPS",
-      "TV, Audio & Surveillance",
-      "Computers & Tablets"
+      "vehicle-electronics-gps",
+      "tv-audio-surveillance",
+      "computers-tablets"
     ],
     "stock": 1
   },
@@ -261,8 +261,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "Computers & Tablets",
-      "Cameras & Photo"
+      "computers-tablets",
+      "cameras-photo"
     ],
     "stock": 5
   },
@@ -276,9 +276,9 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 2
     },
     "categories": [
-      "Vehicle Electronics & GPS",
-      "Cellphones & Accessories",
-      "Cameras & Photo"
+      "vehicle-electronics-gps",
+      "cellphones-accessories",
+      "cameras-photo"
     ],
     "stock": 1
   },
@@ -292,8 +292,8 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
     },
     "categories": [
-      "Vehicle Electronics & GPS",
-      "Video Games & Consoles"
+      "vehicle-electronics-gps",
+      "video-games-consoles"
     ],
     "stock": 9
   },
@@ -307,7 +307,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 1
     },
     "categories": [
-      "Cellphones & Accessories"
+      "cellphones-accessories"
     ],
     "stock": 7
   },
@@ -321,7 +321,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 3
     },
     "categories": [
-      "Cellphones & Accessories"
+      "cellphones-accessories"
     ],
     "stock": 10
   },
@@ -335,7 +335,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 4
     },
     "categories": [
-      "Cellphones & Accessories"
+      "cellphones-accessories"
     ],
     "stock": 5
   },
@@ -349,7 +349,7 @@
       "5c837fa6-3bf6-4e74-ab3a-80b996081d64": 5
     },
     "categories": [
-      "Computers & Tablets"
+      "computers-tablets"
     ],
     "stock": 3
   }

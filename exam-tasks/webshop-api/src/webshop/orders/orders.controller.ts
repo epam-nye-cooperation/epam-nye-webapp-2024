@@ -16,10 +16,7 @@ export class OrderController {
 
   constructor(private orders: OrderService, private products: ProductService) {}
 
-  @ApiOperation({
-    summary: 'Felhasználó megrendelései',
-    description: 'Visszaadja a felhasználó saját megrendeléseit'
-  })
+  @ApiOperation({ summary: 'Felhasználó megrendelései', description: 'Visszaadja a felhasználó saját megrendeléseit' })
   @ApiOkResponse({ type: [UserOrder], description: 'A felhasználó megrendelései' })
   @Get()
   getOrders(
@@ -28,10 +25,7 @@ export class OrderController {
     return this.orders.getOrders(userId).map((order) => new UserOrder(order, this.products));
   }
 
-  @ApiOperation({
-    summary: 'Megrendelés részletei',
-    description: 'Visszaadja a felhasználó egy megrendelését'
-  })
+  @ApiOperation({ summary: 'Megrendelés részletei', description: 'Visszaadja a felhasználó egy megrendelését' })
   @ApiOkResponse({ type: UserOrder, description: 'A megrendelés részletes adatai' })
   @ApiNotFoundResponse({ description: 'A megadott megrendelés nem található' })
   @Get('/:orderId')
@@ -46,14 +40,8 @@ export class OrderController {
     return new UserOrder(order, this.products);
   }
 
-  @ApiOperation({
-    summary: 'Megrendelés rögzítése',
-    description: 'Rögzít egy új megrendelést az adatbázisban'
-  })
-  @ApiOkResponse({
-    type: UserOrder,
-    description: 'A létrehozott megrendelés'
-  })
+  @ApiOperation({ summary: 'Megrendelés rögzítése', description: 'Rögzít egy új megrendelést az adatbázisban' })
+  @ApiOkResponse({ type: UserOrder, description: 'A létrehozott megrendelés' })
   @ApiBadRequestResponse({ description: 'Hibás megrendelés adatok' })
   @ApiConflictResponse({ description: 'Nem teljesíthető megrendelés' })
   @Post()
@@ -65,15 +53,11 @@ export class OrderController {
     return new UserOrder(order, this.products);
   }
 
-  @ApiOperation({
-    summary: 'Visszamondás',
-    description: 'Megrendelés visszamondása kötelező indoklással; csak új, még nem jóváhagyott megrendelések esetén'
-  })
-  @ApiOkResponse({
-    type: UserOrder,
-  })
+  @ApiOperation({ summary: 'Visszamondás', description: 'Megrendelés visszamondása kötelező indoklással; csak új, még nem jóváhagyott megrendelések esetén' })
+  @ApiOkResponse({ type: UserOrder, description: 'Visszamondott megrendelés' })
   @ApiNotFoundResponse({ description: 'A megadott megrendelés nem található' })
   @ApiConflictResponse({ description: 'A megrendelés már nem módosítható' })
+  @HttpCode(HttpStatus.ACCEPTED)
   @Delete('/:orderId')
   async cancelOrder(
     @AuthToken() { userId }: UserAuthToken,
@@ -87,10 +71,7 @@ export class OrderController {
     return new UserOrder(result, this.products);
   }
 
-  @ApiOperation({
-    summary: 'Szállítási cím módosítása',
-    description: 'Módosítja a felhasználó egy megadott megrendeléséhez tartozó szállítási címet; csak új megrendelés esetén'
-  })
+  @ApiOperation({ summary: 'Szállítási cím módosítása', description: 'Módosítja a felhasználó egy megadott megrendeléséhez tartozó szállítási címet; csak új megrendelés esetén' })
   @ApiAcceptedResponse({ type: UserOrder, description: 'sikeres módosítás' })
   @ApiNotFoundResponse({ description: 'A megadott megrendelés nem található' })
   @ApiConflictResponse({ description: 'A megrendelés már nem módosítható' })
@@ -108,10 +89,7 @@ export class OrderController {
     return new UserOrder(result, this.products);
   }
 
-  @ApiOperation({
-    summary: 'Számlázási cím módosítása',
-    description: 'Módosítja a felhasználó egy megadott megrendeléséhez tartozó számlázási címet; csak új megrendelés esetén'
-  })
+  @ApiOperation({ summary: 'Számlázási cím módosítása', description: 'Módosítja a felhasználó egy megadott megrendeléséhez tartozó számlázási címet; csak új megrendelés esetén' })
   @ApiAcceptedResponse({ type: UserOrder, description: 'sikeres módosítás' })
   @ApiNotFoundResponse({ description: 'A megadott megrendelés nem található' })
   @ApiConflictResponse({ description: 'A megrendelés már nem módosítható' })

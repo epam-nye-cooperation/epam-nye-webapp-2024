@@ -11,6 +11,7 @@ A feladat minden esetben egy **React alapú alkalmazás elkészítése TypeScrip
   - A csapaton belüli konfliktusok kezelése, szükség szerint az óraadók felé történő kommunikációja
   - A tagokkal együtt dolgozik ő is feladatokon
   - Vizsgán a csapat képviselete az átfogó bemutatásnál
+  - A csapatvezető 1 plusz ponttal rendelkezik, melyet felhasználhat a saját, vagy egy csapattársa vizsgajegyének javítására, amennyiben a jegy nem elégtelen.
 - A megvalósított alkalmazásnak tartalmaznia kell az előírt funkciókat, a feladatokhoz megadott követelmények teljesítésével
 - Csak a csapaton belül dolgozhattok, külső fél segítsége semmilyen formában nem megengedett!
 - A feladatok megoldása a saját repository-ba történő Pull request formájában történik. Közvetlen commit a main/master branch-re tilos.
@@ -22,13 +23,15 @@ A feladat minden esetben egy **React alapú alkalmazás elkészítése TypeScrip
 - Az elkészített alkalmazás minden esetben a React library segítségével készüljön, akár több más külsős NPM csomag segítségével.
 - A kinézetre nincs megkötés, a csapaton áll az alkalmazás design-ja.
 - A szerverrel történő kommunikáció csak a JavaScript Fetch API-jának a segítségével lehetséges, más package (pl. axios) használata **TILOS** - az így beadott feladatokat nem fogadjuk el.
+- Az oldalon belül történő navigáció során az alkalmazás nem töltődhet újra, az oldal kövesse a Single Page Application elveit.
+- Ha a feladat felugró ablakot, megerősítést vagy értesítést kér, a `window` objektum funkcióit (pl. confirm, error, alert vagy open) használni **tilos** - minden esetben stilizált ablakra vonatkozik a kérés.
 - A beadás a vizsgaidőpont előtt 2 nappal email-ben történik a csapatvezető által. A levél tartalmazza:
   - A csapattagok nevét és Neptun kódját
   - A választott API-t
   - A Git repository címét, amiben az alkalmazás teljes egészében megtalálható
 
 ## Értékelés
-Minden feladat egyedi pontszámokat tartalmaz, nehézségtől függően. Minden pont egy megszerzett jegynek felel meg, egy hallgató maximum 5 pontot szerezhet (függetlenül a megoldott részektől). Amennyiben a ZH-t nem sikerült a hallgatónak korábban teljesítenie, úgy a jegybe beleszámít az ott szerzett (egy vagy két) elégtelen is - az érdemjegy ezek átlaga.
+Minden feladat egyedi pontszámokat tartalmaz, nehézségtől függően. Minden pont egy megszerzett jegynek felel meg, egy hallgató maximum 5 pontot szerezhet (függetlenül a megoldott elemektől). Amennyiben a ZH-t nem sikerült a hallgatónak korábban teljesítenie, úgy a jegybe beleszámít az ott szerzett (egy vagy két) elégtelen is - az érdemjegy ezek átlaga.
 
 ## Javítási lehetőség
 Amennyiben a vizsgán a feladat bemutatása vagy védése sikertelen, úgy egy pótlásra van lehetőség fent említett kivétellel. A hallgatónak egy másik feladatot kell megoldania, a feladat teljesítésére két hét áll rendelkezésére.

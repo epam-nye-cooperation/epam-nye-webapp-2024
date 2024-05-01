@@ -14,6 +14,33 @@ export enum ProductOrder {
   PRICE_DESC = 'price.DESC',
 }
 
+export class Category {
+  @ApiProperty({ type: String, description: 'Kategória-azonosító', example: 'computers-tablets' })
+  id: string;
+
+  @ApiProperty({ type: String, description: 'Kategória neve', example: 'Computers & Tablets' })
+  name: string;
+
+  @ApiProperty({ type: String, format: 'URL', description: 'Kategóriához tartozó kép', example: 'https://picsum.photos/400/400.jpg' })
+  image: string;
+
+  constructor(category?: Category) {
+    this.id = category?.id;
+    this.name = category?.name;
+    this.image = category?.image;
+  }
+}
+
+export class CategoryWithProductCount extends Category {
+  @ApiProperty({ type: Number, description: 'A kategóriához tartozó termékek száma', example: 9 })
+  productCount: number;
+
+  constructor(category: Category, productCount: number) {
+    super(category);
+    this.productCount = productCount;
+  }
+}
+
 export interface RawProduct {
   id: string;
   name: string;
@@ -168,7 +195,7 @@ export class ProductSearchParams {
     type: [String],
     required: false,
     description: 'Kategóriák',
-    example: ['Cameras & Photo']
+    example: ['cameras-photo']
   })
   @IsOptional()
   @Transform(({ value }) => {

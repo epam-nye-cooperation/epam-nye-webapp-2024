@@ -2,8 +2,7 @@ import { Transform, TransformFnParams } from 'class-transformer';
 
 export function ToNumber(): (target: any, key: string) => void {
   return Transform(({ value }: TransformFnParams) => {
-    const type = typeof value;
-    if (type == 'number') {
+    if (value === undefined || value === null || typeof value === 'number') {
       return value;
     }
     const numericValue = parseFloat(value);

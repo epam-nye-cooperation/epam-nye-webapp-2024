@@ -5,7 +5,7 @@ import { CreateOrderItem } from '../../decorators/transform.order-item';
 import { TrimmedText } from '../../decorators/transform.trimmed-text';
 import { BillingAddress, ShippingAddress } from '../../users/address.type';
 import { ProductService } from '../products/products.service';
-import { Product } from '../products/products.type';
+import { Product, ProductListItem } from '../products/products.type';
 
 export enum OrderStatus {
   NEW = 'new',
@@ -90,14 +90,14 @@ export class Order extends CreateOrderRequest {
 }
 
 export class UserOrderItem {
-  @ApiProperty({ type: Product, description: 'Termék' })
-  product: Product;
+  @ApiProperty({ type: ProductListItem, description: 'Termék' })
+  product: ProductListItem;
 
   @ApiProperty({ type: Number, description: 'darabszám' })
   quantity: number;
 
   constructor(item: OrderItem, products: ProductService) {
-    this.product = products.getProduct(item.productId);
+    this.product = products.getProduct(item.productId).toListItem();
     this.product.price = item.price ?? this.product.price;
     this.quantity = item.quantity;
   }
@@ -143,8 +143,8 @@ export class UserOrder {
     this.cancelReason = order.cancelReason;
     this.billingAddress = order.billingAddress;
     this.shippingAddress = order.shippingAddress;
-    this.total = order.items.reduce((total, item) => total + (item.quantity * item.price), 0);
     this.items = order.items.map((item) => new UserOrderItem(item, products));
+    this.total = this.items.reduce((total, item) => total + (item.quantity * item.product.price), 0);
   }
 }
 

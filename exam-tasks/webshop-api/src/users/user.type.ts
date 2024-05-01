@@ -58,6 +58,11 @@ export class LoginRequest {
   password: string;
 }
 
+export class LoginResponse {
+  @ApiProperty({ type: String, description: 'JWT Bearer token' })
+  accessToken: string;
+}
+
 export class RegisterUserRequestBody
   extends LoginRequest
   implements Omit<User, 'userId' | 'email'>

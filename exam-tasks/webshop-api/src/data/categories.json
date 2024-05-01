@@ -1,0 +1,32 @@
+[
+  {
+    "id": "cameras-photo",
+    "name": "Cameras & Photo",
+    "image": "https://picsum.photos/400/400.jpg"
+  },
+  {
+    "id": "cellphones-accessories",
+    "name": "Cellphones & Accessories",
+    "image": "https://picsum.photos/400/400.jpg"
+  },
+  {
+    "id": "computers-tablets",
+    "name": "Computers & Tablets",
+    "image": "https://picsum.photos/400/400.jpg"
+  },
+  {
+    "id": "tv-audio-surveillance",
+    "name": "TV, Audio & Surveillance",
+    "image": "https://picsum.photos/400/400.jpg"
+  },
+  {
+    "id": "vehicle-electronics-gps",
+    "name": "Vehicle Electronics & GPS",
+    "image": "https://picsum.photos/400/400.jpg"
+  },
+  {
+    "id": "video-games-consoles",
+    "name": "Video Games & Consoles",
+    "image": "https://picsum.photos/400/400.jpg"
+  }
+]

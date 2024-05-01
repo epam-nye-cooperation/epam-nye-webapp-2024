@@ -6,6 +6,7 @@ import { Product, ProductSearchParams, RawProduct } from './products.type';
 
 import { Configuration } from '../../app.configuration';
 import { ProductSearchFilters } from './products.search-filters';
+import { CategoryService } from './category.service';
 
 const DB_PATH = resolve(__dirname, '../../data/products.json');
 
@@ -15,7 +16,6 @@ export class ProductService implements OnModuleInit {
 
   private filters: ProductSearchFilters;
   private products: Map<string, Product>;
-  private categories: Set<string>;
 
   constructor(config: ConfigService<Configuration>) {
     this.filters = new ProductSearchFilters(config.get('LANGUAGE'));
@@ -28,11 +28,6 @@ export class ProductService implements OnModuleInit {
         db.set(product.id, new Product(product));
         return db;
       }, new Map<string, Product>);
-      this.categories = new Set(
-        Array.from(this.products.values()).map(
-          (product) => Array.from(product.categories.values())
-        ).flat()
-      );
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException('Cannot find products!');
@@ -49,10 +44,6 @@ export class ProductService implements OnModuleInit {
       .sort(this.filters.orderBy(params.orderBy))
   }
 
-  getCategories() {
-    return Array.from(this.categories.values()).sort();
-  }
-
   getProduct(productId: string): Product | null {
     if (!this.products.has(productId)) {
       return null;
@@ -66,12 +57,15 @@ export class ProductService implements OnModuleInit {
       .filter(Boolean);
   }
 
+  getProductsCountByCategory(categoryId: string) {
+    return Array.from(this.products.values()).filter(this.filters.byCategory([categoryId])).length;
+  }
+
   public async decreaseStock(items: Map<string, number>): Promise<void> {
     return this.changeStock(items, -1);
   }
 
   public async increaseStock(items: Map<string, number>): Promise<void> {
-    console.log('UPDATE STOCK', items);
     return this.changeStock(items, 1);
   }
 
@@ -79,7 +73,6 @@ export class ProductService implements OnModuleInit {
     Array.from(items.entries()).forEach(([productId, quantity]) => {
       const product = this.products.get(productId);
       product.stock += quantity * multiplier;
-      console.log(product);
       this.products.set(product.id, product);
     });
     return this.save();
