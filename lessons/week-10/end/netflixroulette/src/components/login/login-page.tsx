@@ -1,0 +1,21 @@
+import { FC, useCallback, useState } from 'react';
+import { useAuthContext } from '../../auth/auth.context';
+import { LoginForm } from './login-form';
+import { useNavigate } from 'react-router-dom';
+
+export const LoginPage: FC = () => {
+  const { login } = useAuthContext();
+  const [error, setError] = useState<string>();
+  const navigate = useNavigate();
+
+  const onLogin = useCallback(async (username: string, password: string) => {
+    const error = await login(username, password);
+    if (error) {
+      setError(error);
+    } else {
+      navigate('/profile');
+    }
+  }, [setError, navigate, login]);
+
+  return <LoginForm onLogin={onLogin} errorMessage={error} />;
+};
