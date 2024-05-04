@@ -4,7 +4,7 @@ import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/900.css';
-import { buttonTheme, inputTheme } from './components';
+import { buttonTheme, formLabelTheme, inputTheme, modalTheme } from './components';
 
 import { transparentize } from './utils/transparentize';
 
@@ -85,5 +85,7 @@ export const theme = extendTheme({
   components: {
     Button: buttonTheme,
     Input: inputTheme,
+    FormLabel: formLabelTheme,
+    Modal: modalTheme,
   },
 });
