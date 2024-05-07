@@ -1,10 +1,10 @@
-import { theme as chakraTheme, extendTheme } from '@chakra-ui/react';
+import { NumberInput, theme as chakraTheme, extendTheme } from '@chakra-ui/react';
 import '@fontsource/montserrat';
 import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/900.css';
-import { buttonTheme, formLabelTheme, inputTheme, modalTheme } from './components';
+import { buttonTheme, formLabelTheme, inputTheme, menuTheme, modalTheme, numberInputTheme, textAreaTheme } from './components';
 
 import { transparentize } from './utils/transparentize';
 
@@ -36,6 +36,7 @@ const colorTokens = {
   text: {
     default: chakraTheme.colors.white,
     highlighted: colors.red['500'],
+    success: chakraTheme.colors.green['500'],
   },
   interactive: {
     button: {
@@ -52,7 +53,8 @@ const colorTokens = {
       background: {
         default: transparentize(colors.gray['700'], 80.31),
         search: transparentize(colors.gray['700'], 80.31)
-      }
+      },
+      placeholder: transparentize(chakraTheme.colors.white, 30),
     }
   },
 };
@@ -86,6 +88,9 @@ export const theme = extendTheme({
     Button: buttonTheme,
     Input: inputTheme,
     FormLabel: formLabelTheme,
+    Menu: menuTheme,
     Modal: modalTheme,
+    NumberInput: numberInputTheme,
+    Textarea: textAreaTheme,
   },
 });

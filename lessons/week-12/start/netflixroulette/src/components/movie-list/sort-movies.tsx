@@ -9,13 +9,6 @@ export interface SortMoviesProps {
 }
 
 export const SortMovies: FC<SortMoviesProps> = ({ sortType, onChange }) => {
-  const menuItemStyle = {
-    backgroundColor: 'background.dark',
-    _focus: {
-      backgroundColor: 'background.default',
-    },
-  };
-
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
@@ -31,15 +24,15 @@ export const SortMovies: FC<SortMoviesProps> = ({ sortType, onChange }) => {
       >
         Sort by
       </Text>
-      <Menu onClose={onClose} onOpen={onOpen} isOpen={isOpen}>
+      <Menu onClose={onClose} onOpen={onOpen} isOpen={isOpen} variant="input">
         <MenuButton>
           {SORT[sortType]}
           <UpDownIcon color="text.highlighted" marginLeft={3} />
         </MenuButton>
         <MenuList bgColor="background.dark">
-          <MenuItem onClick={() => onChange(MovieSortType.RELEASE_DATE_DESC)} sx={menuItemStyle}>Release date</MenuItem>
-          <MenuItem onClick={() => onChange(MovieSortType.TITLE_ASC)} sx={menuItemStyle}>Title</MenuItem>
-          <MenuItem onClick={() => onChange(MovieSortType.RATING_DESC)} sx={menuItemStyle}>Best first</MenuItem>
+          <MenuItem onClick={() => onChange(MovieSortType.RELEASE_DATE_DESC)}>Release date</MenuItem>
+          <MenuItem onClick={() => onChange(MovieSortType.TITLE_ASC)}>Title</MenuItem>
+          <MenuItem onClick={() => onChange(MovieSortType.RATING_DESC)}>Best first</MenuItem>
         </MenuList>
       </Menu>
     </Flex>

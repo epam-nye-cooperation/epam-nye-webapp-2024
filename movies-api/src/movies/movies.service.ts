@@ -86,7 +86,7 @@ export class MovieService implements OnModuleInit {
     this.movies = [
       ...this.movies.slice(0, index - 1),
       movie,
-      ...this.movies.slice(index, this.movies.length),
+      ...this.movies.slice(index + 1, this.movies.length),
     ];
     this.saveDatabase();
     return movie;
