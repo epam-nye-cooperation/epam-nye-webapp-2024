@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { Box, Container} from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { Box, ChakraProps, Container, Flex} from '@chakra-ui/react';
+import { useMoviesApi, useMovieContext } from '../../state';
 import { MovieList } from './movie-list';
 import { SortMovies } from './sort-movies';
-import { useMovieContext } from '../../state';
-import { useMoviesApi } from '../../state/use-movies-api';
 
 export const MovieListPage = () => {
   const { changeOrder, setResults, query, orderBy, movies } = useMovieContext();
@@ -20,9 +19,20 @@ export const MovieListPage = () => {
   return (
     <Box width="full" backgroundColor="background.dark" marginTop="5">
       <Container maxWidth="6xl" paddingY="5">
-        <SortMovies sortType={orderBy} onChange={changeOrder} />
+        <Flex sx={filterStyle}>
+          <SortMovies sortType={orderBy} onChange={changeOrder} />
+        </Flex>
         {movies && <MovieList movies={movies}/>}
       </Container>
     </Box>
   );
+};
+
+const filterStyle: ChakraProps['sx'] = {
+  alignItems: 'center',
+  borderBottom: 'solid 2px',
+  paddingBottom: 2,
+  borderBottomColor: 'gray.600',
+  justifyContent: 'space-between',
+  marginBottom: '6',
 };
