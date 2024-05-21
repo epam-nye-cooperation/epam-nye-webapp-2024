@@ -14,6 +14,7 @@ import { LocalAuthGuard } from './local-auth.guard';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import {
   LoginRequest,
+  LoginResponse,
   RegisterUserRequestBody,
   RegisterUserResponse,
   User,
@@ -52,7 +53,7 @@ export class AuthController {
     description: 'Belépés felhasználónévvel és jelszóval. A visszaadott Bearer token Authentication header-ben használható'
   })
   @UseGuards(LocalAuthGuard)
-  @ApiCreatedResponse({ description: 'Sikeres belépés - JWT Bearer token', type: String })
+  @ApiCreatedResponse({ description: 'Sikeres belépés - JWT Bearer token', type: LoginResponse })
   @ApiBadRequestResponse({ description: 'Hibás adatok' })
   @ApiUnauthorizedResponse({ description: 'Hibás felhasználónév vagy jelszó' })
   @Post('/login')
