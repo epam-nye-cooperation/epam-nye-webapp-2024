@@ -20,3 +20,5 @@ Maximum 4 fős csapatnak ajánlott.
 | 14. | [NA-14 - Feladat módosítása](./NA-14.md)       | 2    | közepes   |
 | 15. | [NA-15 - Kedvencnek jelölés](./NA-15.md)       | 1    | alacsony  |
 | 16. | [NA-16 - Feladat elvégzése](./NA-16.md)        | 1    | alacsony  |
+
+[Click here for english version](./en/README.md)

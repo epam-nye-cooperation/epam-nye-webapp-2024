@@ -1,5 +1,7 @@
 # Notes API
 
+[Click here for english version](./README-en.md)
+
 ## Leírás
 
 Notes-API a Nyíregyházi Egyetem Webalkalmazás-fejlesztés tantárgy beadandójához szükséges szerver oldali alkalmazást tartalmazza.  

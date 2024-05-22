@@ -1,4 +1,6 @@
-# (WIP) Vizsgamunkához szükséges szolgáltatások
+# Vizsgamunkához szükséges szolgáltatások
+
+[Click here for english version](./README-en.md)
 
 Ezen mappa tartalmazza a megvalósítandó projectekhez szükséges szerver-oldali szolgáltatásokat. Mindegyik API hasonló nehézségű feladatokat tartalmaz, de a követelmények eltérnek.  
 A feladat minden esetben egy **React alapú alkalmazás elkészítése TypeScript segítségével**, a választott API szolgáltatásainak felhasználásával.
