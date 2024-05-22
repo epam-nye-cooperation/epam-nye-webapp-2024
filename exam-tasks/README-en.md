@@ -1,4 +1,4 @@
-# Vizsgamunkához szükséges szolgáltatások
+# Services required for exam work
 
 This directory contains the server-side services required for the projects to be done. Each API contains tasks with similar difficulties, but the requriements are different.
 In each case the end result is expected to be a **React based application written in TypeScript** using the services of the choosen API.
