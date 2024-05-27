@@ -6,7 +6,7 @@
 ### Szolgáltatás: [PUT /user](http://localhost:5000/api-doc#/Users/AuthController_updateProfile)
 ### Prioritás: közepes
 
-A feladat egy olyan form létrehozása, ahol a felhasználó módosítani tudja az általa megadott vezeték- és keresztnevet. A módosítást követően az új adatok legyenek láthatóak az oldalon (lásd [Profil és kilépés](./WSA-03.md))  
+A feladat egy olyan form létrehozása, ahol a felhasználó módosítani tudja az általa megadott vezeték- és keresztnevet, valamint szállítási- és számlázási címét. A módosítást követően az új adatok legyenek láthatóak az oldalon (lásd [Profil és kilépés](./WSA-03.md))  
 Hibás adatok nem küldhetőek a szolgáltatáshoz, kliens oldalon ellenőrizzük azokat. Amennyiben 401-es hibát kapunk válaszul, [léptessük ki a felhasználót](./WSA-03.md) és irányítsuk át a belépési oldalra.  
 Az oldal csak belépett felhasználók számára elérhető, az URL cím beütésekor érvényesítsük a felhasználó adatait és hiba esetén irányítsuk át a belépő oldalra.  
 A jelszót és email címet ezen az oldalon nem lehet megváltoztatni.

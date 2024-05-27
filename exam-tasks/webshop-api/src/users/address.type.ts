@@ -86,7 +86,7 @@ export class BillingAddress extends Address {
   constructor(address?: Address) {
     super(address);
     if (address && 'taxNumber' in address) {
-      this.taxNumber = this.taxNumber;
+      this.taxNumber = address.taxNumber as typeof this.taxNumber;
     }
   }
 }
